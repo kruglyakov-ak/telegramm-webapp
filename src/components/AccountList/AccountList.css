@@ -1,8 +1,14 @@
 .account-list {
-  padding-top: 20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  height: max-content;
   row-gap: 20px;
+  width: 100%;
+}
+
+.account-button {
+    width: 100%;
 }

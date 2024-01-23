@@ -9,7 +9,7 @@ function AccountList(props) {
       <Button>Добавить аккаунт</Button>
 
       {accounts.map((account) => (
-        <Button key={account}>Аккаунт {account}</Button>
+        <Button className={"account-button"} key={account}>Аккаунт {account}</Button>
       ))}
     </div>
   );
