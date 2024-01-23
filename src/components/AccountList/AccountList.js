@@ -1,8 +1,9 @@
 import React from 'react';
+import './AccountList.css';
 
 function AccountList(props) {
     return (
-        <div>
+        <div className="account-list">
             Account List
         </div>
     );
