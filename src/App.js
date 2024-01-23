@@ -1,17 +1,9 @@
 import { useEffect } from "react";
-import "./App.css";
 
 const tg = window.Telegram.WebApp;
 function App() {
   useEffect(() => {
-    try {
-      tg.ready();
-      tg.showAlert(`Init data: ${tg.initData}`, onCloseButtonHandler );
-
-    } catch (e) {
-      tg.showAlert(`Ошибка: ${e.message}`);
-    }
-    
+    tg.ready();
   }, []);
 
   const onCloseButtonHandler = () => {
