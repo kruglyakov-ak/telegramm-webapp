@@ -4,6 +4,8 @@ const tg = window.Telegram.WebApp;
 function App() {
   useEffect(() => {
     tg.ready();
+
+    console.log(tg.initData);
   }, []);
 
   const onCloseButtonHandler = () => {
