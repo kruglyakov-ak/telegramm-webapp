@@ -6,7 +6,7 @@ function App() {
   useEffect(() => {
     try {
       tg.ready();
-      tg.showAlert(`Init data: `, tg.initData);
+      tg.showAlert(`Init data: ${tg.initData}`, onCloseButtonHandler );
 
     } catch (e) {
       tg.showAlert(`Ошибка: ${e.message}`);
