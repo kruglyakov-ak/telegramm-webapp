@@ -6,7 +6,7 @@ function App() {
   useEffect(() => {
     try {
       tg.ready();
-      tg.showAlert(`Ошибка: ${tg.initData}`);
+      tg.showAlert(`Init data: `, tg.initData);
 
     } catch (e) {
       tg.showAlert(`Ошибка: ${e.message}`);
