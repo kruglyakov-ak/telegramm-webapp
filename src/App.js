@@ -4,7 +4,12 @@ import "./App.css";
 const tg = window.Telegram.WebApp;
 function App() {
   useEffect(() => {
-    tg.ready();
+    try {
+      tg.ready();
+    } catch (e) {
+      tg.showAlert(`Ошибка: ${e.message}`);
+    }
+    
   }, []);
 
   const onCloseButtonHandler = () => {
