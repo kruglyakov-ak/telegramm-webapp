@@ -21,9 +21,10 @@ const CreateAccountForm = () => {
       />
 
       <Button>Сохранить</Button>
-      <Link to={AppRouterPath.Main}>
-        <Button>Отмена</Button>
-      </Link>
+
+      <Button>
+        <Link to={AppRouterPath.Main}>Отмена</Link>
+      </Button>
     </form>
   );
 };
