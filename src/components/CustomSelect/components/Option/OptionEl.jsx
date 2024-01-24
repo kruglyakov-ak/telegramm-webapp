@@ -30,7 +30,7 @@ export const OptionEl = ({ onClick, option }) => {
   return (
     <li className='option'>
       <button
-        className='button'
+        className='option-button'
         type="button"
         value={value}
         ref={optionRef}
