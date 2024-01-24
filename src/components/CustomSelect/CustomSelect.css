@@ -1,6 +1,10 @@
 .selectWrapper {
   min-width: 57px;
   position: relative;
+  border: 1px solid var(--tg-theme-button-color);
+  border-radius: 4px;
+  padding: 7px 5px 8px 12px;
+  max-height: 46px;
 }
 
 .selectValueWrapper {
@@ -53,11 +57,4 @@
 
 .selectWrapper::-webkit-scrollbar-thumb {
   background-color: var(--color-border);
-}
-
-.selectWrapper.border .selectValueWrapper {
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  padding: 7px 5px 8px 12px;
-  max-height: 42px;
 }

@@ -7,8 +7,8 @@ import { AppRouterPath } from "../../constants";
 import "./CreateAccountForm.css";
 
 const options = [
-  { value: "deribit", label: "DERIBIT" },
-  { value: "binance", label: "BINANCE" },
+  { value: "deribit", label: "Deribit" },
+  { value: "binance", label: "Binance" },
 ];
 
 const CreateAccountForm = () => {

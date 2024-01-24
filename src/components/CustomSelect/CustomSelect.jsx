@@ -85,7 +85,7 @@ const CustomSelect = ({
           >
             <path
               d="M7 18L15 12L23 18"
-              stroke="var(--color-text)"
+              stroke="var(--tg-theme-button-color)"
               stroke-width="3"
             />
           </svg>
