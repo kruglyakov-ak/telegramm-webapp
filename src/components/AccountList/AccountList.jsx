@@ -14,7 +14,9 @@ function AccountList(props) {
       </Button>
 
       {accounts.map((account) => (
-        <Button key={account}>Аккаунт {account}</Button>
+        <Button key={account}>
+          <Link to={AppRouterPath.Account(account)}>Аккаунт {account}</Link>
+        </Button>
       ))}
     </div>
   );
