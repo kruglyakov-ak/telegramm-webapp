@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "../Link/Link";
 import Button from "../Button/Button";
 import { AppRouterPath } from "../../constants";
 

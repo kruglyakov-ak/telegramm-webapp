@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Button from "../Button/Button";
+import Link from "../Link/Link";
 import Input from "../Input/Input";
 import { AppRouterPath } from "../../constants";
 import "./CreateAccountForm.css";
