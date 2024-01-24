@@ -9,14 +9,14 @@ const accounts = [0, 1, 2, 3, 4, 5, 6, 7];
 function AccountList(props) {
   return (
     <div className="account-list">
-      <Button>
-        <Link to={AppRouterPath.CreateAccountForm}>Добавить аккаунт</Link>
-      </Button>
+      <Link to={AppRouterPath.CreateAccountForm}>
+        <Button>Добавить аккаунт</Button>
+      </Link>
 
       {accounts.map((account) => (
-        <Button key={account}>
-          <Link to={AppRouterPath.Account(account)}>Аккаунт {account}</Link>
-        </Button>
+        <Link to={AppRouterPath.Account(account)}>
+          <Button key={account}>Аккаунт {account}</Button>
+        </Link>
       ))}
     </div>
   );

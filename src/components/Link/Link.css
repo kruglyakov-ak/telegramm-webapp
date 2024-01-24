@@ -1,4 +1,5 @@
 .link {
     color: var(--tg-theme-button-text-color);
     text-decoration: none;
+    width: 100%;
 }
