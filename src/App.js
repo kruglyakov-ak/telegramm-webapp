@@ -4,10 +4,10 @@ import "./App.css";
 
 function App({ children }) {
   const { tg } = useTelegram();
-  
+
   useEffect(() => {
     tg.ready();
-
+    tg.expand();
     console.log(tg.initData);
   }, [tg]);
 
