@@ -19,7 +19,13 @@ const CreateAccountForm = () => {
         value={accountName}
         onChange={(e) => setAccountName(e.target.value)}
       />
-      <Input title={"Выбор биржи:"} type="text" placeholder="Выбор биржи" />
+      <Input
+        title={"Выбор биржи:"}
+        type="text"
+        placeholder="Выбор биржи"
+        value={exchange}
+        onChange={(e) => setExchange(e.target.value)}
+      />
       <Input
         title={"Main API KEY:"}
         value={mainApiKey}
