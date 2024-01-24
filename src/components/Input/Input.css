@@ -25,7 +25,7 @@
   bottom: 10px;
   box-sizing: border-box;
   pointer-events: none;
-  color: var(--tg-theme-hint-color);
+  color: var(--tg-theme-button-text-color);
   font-size: 16px;
   font-weight: 400;
   left: 8px;
@@ -44,5 +44,4 @@
 
 .input:focus + .input-placeholder {
   transform: scale(0.75) translateY(-25px);
-  color: var(--tg-theme-secondary-bg-color);
 }
