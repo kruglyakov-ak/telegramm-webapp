@@ -8,13 +8,13 @@
   border-radius: 5px;
   border: 1px solid var(--tg-theme-button-color);
   color: var(--tg-theme-text-color);
-  background-color: var(--tg-theme-section-bg-color);
+  background-color: var(--tg-theme-bg-color);
   width: 100%;
   outline: none;
 }
 
 .input-placeholder {
-  background-color: var(--tg-theme-section-bg-color);
+  background-color: var(--tg-theme-bg-color);
   bottom: 9px;
   box-sizing: border-box;
   pointer-events: none;
