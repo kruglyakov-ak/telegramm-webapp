@@ -10,11 +10,11 @@ function AccountList(props) {
   return (
     <div className="account-list">
       <Link to={AppRouterPath.CreateAccountForm}>
-        <Button className={"account-button"}>Добавить аккаунт</Button>
+        <Button>Добавить аккаунт</Button>
       </Link>
 
       {accounts.map((account) => (
-        <Button className={"account-button"} key={account}>
+        <Button key={account}>
           Аккаунт {account}
         </Button>
       ))}
