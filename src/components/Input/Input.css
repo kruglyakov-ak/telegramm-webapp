@@ -7,17 +7,17 @@
   padding: 10px 10px;
   border-radius: 5px;
   border: 1px solid var(--tg-theme-button-color);
-  color: var(--tg-theme-button-text-color);
+  color: var(--tg-theme-text-color);
   background-color: var(--tg-theme-section-bg-color);
-  outline: none;
+  width: 100%;
 }
 
 .input-placeholder {
   background-color: var(--tg-theme-section-bg-color);
-  bottom: 10px;
+  bottom: 9px;
   box-sizing: border-box;
   pointer-events: none;
-  color: var(--tg-theme-button-text-color);
+  color: var(--tg-theme-text-color);
   font-size: 16px;
   font-weight: 400;
   left: 8px;
@@ -35,5 +35,5 @@
 }
 
 .input:focus + .input-placeholder {
-  transform: scale(0.75) translateY(-25px);
+  transform: scale(0.75) translateY(-23px);
 }
