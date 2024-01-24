@@ -16,7 +16,7 @@
 
 .input-placeholder {
   background-color: var(--tg-theme-bg-color);
-  bottom: 9px;
+  bottom: 14px;
   box-sizing: border-box;
   pointer-events: none;
   color: var(--tg-theme-text-color);
@@ -41,5 +41,5 @@
 .input.non-empty + .input-placeholder {
   left: 0px;
   color: var(--tg-theme-button-color);
-  transform: scale(0.75) translateY(-25px);
+  transform: scale(0.75) translateY(-28px);
 }
