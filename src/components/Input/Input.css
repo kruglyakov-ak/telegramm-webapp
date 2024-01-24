@@ -12,9 +12,11 @@
   width: 100%;
   font-size: 1em;
   outline: none;
+  font-family: inherit;
 }
 
 .input-placeholder {
+  font-family: inherit;
   background-color: var(--tg-theme-bg-color);
   bottom: 17px;
   box-sizing: border-box;
