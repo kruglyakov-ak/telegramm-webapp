@@ -1,9 +1,10 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import "./AccountPage.css";
 
 const AccountPage = () => {
-  let { id } = useParams();
+  let { id } =  useLoaderData();
+
   return (
     <div>
       <h1>AccountPage {id}</h1>
