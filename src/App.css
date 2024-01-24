@@ -6,7 +6,11 @@
 
 body {
   background-color: var(--tg-theme-bg-color);
-  color: var(--tg-theme-text-color)
+  color: var(--tg-theme-text-color);
+  font-size: 16px;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Apple Color Emoji",
+    "Segoe UI", Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
 }
 
 .app {
