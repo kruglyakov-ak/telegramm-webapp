@@ -1,0 +1,63 @@
+.selectWrapper {
+  min-width: 57px;
+  position: relative;
+}
+
+.selectValueWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 100%;
+  height: fit-content;
+}
+.placeholder {
+  height: fit-content;
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  transform: rotateZ(-180deg);
+  transition: ease-in-out 0.2s;
+}
+
+.selectWrapper[data-is-active="true"].selectValueWrapper .arrow {
+  transition: ease-in-out 0.2s;
+  transform: rotateZ(0);
+}
+
+.select {
+  position: absolute;
+  border: 1px solid red;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-primary);
+  box-shadow: var(--shadow);
+  padding: 6px;
+  top: calc(100% + 6px);
+  z-index: 1;
+
+  scrollbar-width: 0.4em;
+  scrollbar-color: var(--color-border) var(--color-bg-primary);
+}
+.selectWrapper::-webkit-scrollbar {
+  width: 0.4em;
+  background-color: var(--color-bg-primary);
+}
+
+.selectWrapper::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.selectWrapper::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+}
+
+.selectWrapper.border .selectValueWrapper {
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 7px 5px 8px 12px;
+  max-height: 42px;
+}

@@ -2,13 +2,26 @@ import React from "react";
 import Button from "../Button/Button";
 import Link from "../Link/Link";
 import Input from "../Input/Input";
+import CustomSelect from "../CustomSelect/CustomSelect";
 import { AppRouterPath } from "../../constants";
 import "./CreateAccountForm.css";
+
+const options = [
+  { value: "deribit", label: "DERIBIT" },
+  { value: "binance", label: "BINANCE" },
+];
+
 const CreateAccountForm = () => {
   const [accountName, setAccountName] = React.useState("");
-  const [exchange, setExchange] = React.useState("");
+  const [selectedOption, setSelectionOption] = React.useState(options[0]);
   const [mainApiKey, setMainApiKey] = React.useState("");
   const [secondApiKey, setSecondApiKey] = React.useState("");
+
+  const exchangeSelectChangeHandler = (value) => {
+    setSelectionOption(
+      options.find((option) => option.value === value) || null
+    );
+  };
 
   return (
     <form className="create-account-form">
@@ -19,13 +32,14 @@ const CreateAccountForm = () => {
         value={accountName}
         onChange={(e) => setAccountName(e.target.value)}
       />
-      <Input
-        title={"Выбор биржи:"}
-        type="text"
-        placeholder="Выбор биржи"
-        value={exchange}
-        onChange={(e) => setExchange(e.target.value)}
+
+      <CustomSelect
+        placeholder={"Выбор биржи"}
+        options={options}
+        selected={selectedOption}
+        onChange={exchangeSelectChangeHandler}
       />
+
       <Input
         title={"Main API KEY:"}
         value={mainApiKey}
