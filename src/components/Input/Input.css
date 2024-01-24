@@ -1,0 +1,17 @@
+.input-label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--tg-theme-button-color);
+  background-color: var(--tg-theme-secondary-bg-color);
+}
+
+.input::placeholder {
+    color: var(--tg-theme-hint-color);
+}
