@@ -20,7 +20,7 @@
   box-sizing: border-box;
   pointer-events: none;
   color: var(--tg-theme-text-color);
-  font-size: 1em;
+  font-size: 0.8em;
   font-weight: 400;
   left: 8px;
   max-width: -moz-calc(100% - (2 * 8px));
