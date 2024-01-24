@@ -35,5 +35,6 @@
 }
 
 .input:focus + .input-placeholder {
-  transform: scale(0.75) translateY(-23px);
+  color: var(--tg-theme-button-color);
+  transform: scale(0.75) translateY(-24px);
 }
