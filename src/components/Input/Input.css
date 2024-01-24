@@ -1,21 +1,48 @@
-.input-fieldset {
+.input-wrapper {
   display: flex;
   flex-direction: column;
   gap: 5px;
   width: 100%;
-  border: 1px solid var(--tg-theme-button-color);
-  font-size: 0.8em;
+  background-color: var(--tg-theme-secondary-bg-color);
+  position: relative;
+}
+
+.legend {
+  margin-left: 20px;
 }
 
 .input {
-  padding: 10px;
+  padding: 10px 10px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid var(--tg-theme-button-color);
   color: var(--tg-theme-button-text-color);
   background-color: var(--tg-theme-secondary-bg-color);
   outline: none;
 }
 
-.input::placeholder {
+.input-placeholder {
+  background-color: var(--tg-theme-secondary-bg-color);
+  bottom: 10px;
+  box-sizing: border-box;
+  pointer-events: none;
   color: var(--tg-theme-hint-color);
+  font-size: 16px;
+  font-weight: 400;
+  left: 8px;
+  max-width: -moz-calc(100% - (2 * 8px));
+  max-width: calc(100% - (2 * 8px));
+  overflow: hidden;
+  padding: 0 8px;
+  text-overflow: ellipsis;
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  width: auto;
+  z-index: 1;
+  position: absolute;
+}
+
+.input:focus + .input-placeholder {
+  transform: scale(0.75) translateY(-25px);
+  color: var(--tg-theme-secondary-bg-color);
 }

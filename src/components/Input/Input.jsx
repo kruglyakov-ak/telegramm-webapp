@@ -1,12 +1,12 @@
 import React from "react";
 import "./Input.css";
 
-const Input = ({ title, wrapperClassName = "", ...props }) => {
+const Input = ({ title, wrapperClassName = "", placeholder, ...props }) => {
   return (
-    <fieldset className={`input-fieldset ${wrapperClassName}`}>
-      <legend>{title}</legend>
+    <div className={`input-wrapper ${wrapperClassName}`}>
       <input className="input" {...props} />
-    </fieldset>
+      <div className="input-placeholder">{placeholder}</div>
+    </div>
   );
 };
 
