@@ -1,36 +1,33 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from "react";
+import "./OptionEl.css";
 
 export const OptionEl = ({ onClick, option }) => {
-  const { label, value } = option
-  const optionRef = useRef(null)
+  const { label, value } = option;
+  const optionRef = useRef(null);
 
-  const handleClick =
-    (
-      clickedValue
-    ) =>
-    () => {
-      onClick(clickedValue)
-    }
+  const handleClick = (clickedValue) => () => {
+    onClick(clickedValue);
+  };
 
   useEffect(() => {
-    const option = optionRef.current
-    if (!option) return
+    const option = optionRef.current;
+    if (!option) return;
     const handleEnterKeyDown = (event) => {
-      if (document.activeElement === option && event.key === 'Enter') {
-        onClick(value)
+      if (document.activeElement === option && event.key === "Enter") {
+        onClick(value);
       }
-    }
+    };
 
-    option.addEventListener('keydown', handleEnterKeyDown)
+    option.addEventListener("keydown", handleEnterKeyDown);
     return () => {
-      option.removeEventListener('keydown', handleEnterKeyDown)
-    }
-  }, [value, onClick, optionRef])
+      option.removeEventListener("keydown", handleEnterKeyDown);
+    };
+  }, [value, onClick, optionRef]);
 
   return (
-    <li className='option'>
+    <li className="option">
       <button
-        className='option-button'
+        className="option-button"
         type="button"
         value={value}
         ref={optionRef}
@@ -39,5 +36,5 @@ export const OptionEl = ({ onClick, option }) => {
         {label}
       </button>
     </li>
-  )
-}
+  );
+};

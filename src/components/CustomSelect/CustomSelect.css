@@ -19,6 +19,7 @@
 
 .placeholder {
   height: fit-content;
+  font-size: inherit;
 }
 
 .arrow {
