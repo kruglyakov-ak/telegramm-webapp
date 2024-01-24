@@ -1,5 +1,6 @@
 .selectWrapper {
   min-width: 57px;
+  width: 100%;
   position: relative;
   border: 1px solid var(--tg-theme-button-color);
   border-radius: 4px;
@@ -15,6 +16,7 @@
   width: 100%;
   height: fit-content;
 }
+
 .placeholder {
   height: fit-content;
 }
@@ -26,7 +28,7 @@
   transition: ease-in-out 0.2s;
 }
 
-.selectWrapper[data-is-active="true"].selectValueWrapper .arrow {
+.selectWrapper[data-is-active="true"] .selectValueWrapper .arrow {
   transition: ease-in-out 0.2s;
   transform: rotateZ(0);
 }
