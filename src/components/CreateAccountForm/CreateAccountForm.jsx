@@ -13,7 +13,7 @@ const options = [
 
 const CreateAccountForm = () => {
   const [accountName, setAccountName] = React.useState("");
-  const [selectedOption, setSelectionOption] = React.useState(options[0]);
+  const [selectedOption, setSelectionOption] = React.useState(null);
   const [mainApiKey, setMainApiKey] = React.useState("");
   const [secondApiKey, setSecondApiKey] = React.useState("");
 
