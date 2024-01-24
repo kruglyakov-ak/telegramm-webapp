@@ -28,15 +28,17 @@
   padding: 0 8px;
   text-overflow: ellipsis;
   transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    left 150ms cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   width: auto;
   z-index: 1;
   position: absolute;
 }
 
-.input:focus + .input-placeholder {
-  left: 4px;
+.input:focus + .input-placeholder,
+.input.non-empty + .input-placeholder {
+  left: -13px;
   color: var(--tg-theme-button-color);
   transform: scale(0.75) translateY(-25px);
 }
