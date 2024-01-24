@@ -10,6 +10,7 @@
   color: var(--tg-theme-text-color);
   background-color: var(--tg-theme-section-bg-color);
   width: 100%;
+  outline: none;
 }
 
 .input-placeholder {
@@ -35,6 +36,7 @@
 }
 
 .input:focus + .input-placeholder {
+  left: 4px;
   color: var(--tg-theme-button-color);
-  transform: scale(0.75) translateY(-24px);
+  transform: scale(0.75) translateY(-25px);
 }
