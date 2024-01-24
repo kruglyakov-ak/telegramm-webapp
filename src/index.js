@@ -13,15 +13,16 @@ const router = createBrowserRouter([
     path: AppRouterPath.Main,
     element: <AccountList />,
     errorElement: <ErrorPage />,
-
   },
   {
     path: AppRouterPath.CreateAccountForm,
     element: <CreateAccountForm />,
+    errorElement: <ErrorPage />,
   },
   {
-    path: '/account/:id',
-    element: <AccountPage/>,
+    path: "/account/:id",
+    element: <AccountPage />,
+    errorElement: <ErrorPage />,
   },
 ]);
 
