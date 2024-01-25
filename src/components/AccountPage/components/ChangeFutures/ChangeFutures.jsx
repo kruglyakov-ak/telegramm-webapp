@@ -36,58 +36,60 @@ const ChangeFutures = () => {
 
   return (
     <div className="actions-block">
-      <CustomSelect
-        placeholder={"Продоваемый фьючерс"}
-        options={availableForSellFuteresOptions}
-        selected={selectedSellOption}
-        onChange={sellFuturesSelectChangeHandler}
-      />
+      <div className="select-wrapper">
+        <CustomSelect
+          placeholder={"Продаваемый фьючерс"}
+          options={availableForSellFuteresOptions}
+          selected={selectedSellOption}
+          onChange={sellFuturesSelectChangeHandler}
+        />
 
-      <div className="change-icon">
-        <svg
-          width="30"
-          height="30"
-          viewBox="0 0 30 30"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          data-ember-extension="1"
-        >
-          <path
-            d="M7 18L15 12L23 18"
-            stroke={
-              selectedSellOption
-                ? "var(--tg-theme-button-color)"
-                : "var(--tg-theme-text-color)"
-            }
-            stroke-width="3"
-          />
-        </svg>
-        <svg
-          width="30"
-          height="30"
-          viewBox="0 0 30 30"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          data-ember-extension="1"
-        >
-          <path
-            d="M7 18L15 12L23 18"
-            stroke={
-              selectedBuyOption
-                ? "var(--tg-theme-button-color)"
-                : "var(--tg-theme-text-color)"
-            }
-            stroke-width="3"
-          />
-        </svg>
+        <div className="change-icon">
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 30 30"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            data-ember-extension="1"
+          >
+            <path
+              d="M7 18L15 12L23 18"
+              stroke={
+                selectedSellOption
+                  ? "var(--tg-theme-button-color)"
+                  : "var(--tg-theme-text-color)"
+              }
+              stroke-width="3"
+            />
+          </svg>
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 30 30"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            data-ember-extension="1"
+          >
+            <path
+              d="M7 18L15 12L23 18"
+              stroke={
+                selectedBuyOption
+                  ? "var(--tg-theme-button-color)"
+                  : "var(--tg-theme-text-color)"
+              }
+              stroke-width="3"
+            />
+          </svg>
+        </div>
+
+        <CustomSelect
+          placeholder={"Покупаемый фьючерс"}
+          options={availableForBuyFuteresOptions}
+          selected={selectedBuyOption}
+          onChange={buyFuturesSelectChangeHandler}
+        />
       </div>
-
-      <CustomSelect
-        placeholder={"Покупаемый фьючерс"}
-        options={availableForBuyFuteresOptions}
-        selected={selectedBuyOption}
-        onChange={buyFuturesSelectChangeHandler}
-      />
 
       <Button>Потвердить</Button>
     </div>
