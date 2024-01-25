@@ -26,7 +26,7 @@ const router = createBrowserRouter(
         element={<CreateAccountForm />}
       />
       <Route
-        path={"/account/:id"}
+        path={AppRouterPath.AccountRoute}
         loader={async ({ params }) => {
           return {
             id: params.id,
