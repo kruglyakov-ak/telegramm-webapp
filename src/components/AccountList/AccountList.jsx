@@ -17,9 +17,9 @@ function AccountList(props) {
         headers: {
           "Content-Type": "application/json",
           "Web-App-Init-Data": tg.initData,
-          mode: "no-cors",
         },
       });
+      console.log(accounts);
       return accounts;
     } catch (error) {
       console.log(error);
