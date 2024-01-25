@@ -11,7 +11,7 @@ const AccountPage = () => {
   let { id } = useLoaderData();
   const isBinance = true;
   return (
-    <div>
+    <div className="account-page">
       <h1 className="account-page-title">Account {id}</h1>
 
       {isBinance ? <BinanceAccount /> : <DerebitAccount />}
