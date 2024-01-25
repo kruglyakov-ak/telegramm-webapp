@@ -9,7 +9,7 @@ const AccountPage = () => {
   const isBinance = false;
   return (
     <div>
-      <h1>AccountPage {id}</h1>
+      <h1 className="account-page-title">Account {id}</h1>
 
       {isBinance ? <BinanceAccount /> : <DerebitAccount />}
     </div>
