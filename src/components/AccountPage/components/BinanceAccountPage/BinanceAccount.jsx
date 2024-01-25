@@ -1,5 +1,6 @@
 import React from "react";
 import BuyingFutures from "../BuyingFutures/BuyingFutures";
+import ChangeFutures from "../ChangeFutures/ChangeFutures";
 import "./BinanceAccount.css";
 import Button from "../../../Button/Button";
 
@@ -17,7 +18,7 @@ const BinanceAccount = () => {
       case "buy":
         return <BuyingFutures currencyOptions={options} />;
       case "change":
-        return <div>change</div>;
+        return <ChangeFutures />;
       default:
         return null;
     }
