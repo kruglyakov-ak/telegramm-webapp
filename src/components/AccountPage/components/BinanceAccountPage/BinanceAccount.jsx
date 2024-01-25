@@ -35,7 +35,7 @@ const BinanceAccount = () => {
           Покупка фьючерса
         </Button>
         <Button
-          className={actionMode !== "channge" && "back-button"}
+          className={actionMode !== "change" && "back-button"}
           onClick={() => setActionMode("change")}
         >
           Обмен фьючерсов
