@@ -21,14 +21,14 @@ const BuyingFutures = ({ currencyOptions = [] }) => {
         selected={selectedOption}
         onChange={currencySelectChangeHandler}
       />
-      <Input
-        title={"Сумма в USDT:"}
-        type="text"
-        placeholder="Сумма в USDT"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-      />
-      <div className="all-amount-wrapper">
+      <div className="amount-wrapper">
+        <Input
+          title={"Сумма в USDT:"}
+          type="text"
+          placeholder="Сумма в USDT"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+        />
         <Button>На всю сумму USDT</Button>
       </div>
       <Button>Потвердить</Button>
