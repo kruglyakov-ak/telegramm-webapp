@@ -24,12 +24,13 @@ const BuyingFutures = ({ currencyOptions = [] }) => {
       <div className="amount-wrapper">
         <Input
           title={"Сумма в USDT:"}
-          type="text"
+          type="number"
           placeholder="Сумма в USDT"
           value={amount}
+          className="amount-input"
           onChange={(e) => setAmount(e.target.value)}
         />
-        <Button>На всю сумму USDT</Button>
+        <Button className="all-amount-button">На всю сумму USDT</Button>
       </div>
       <Button>Потвердить</Button>
     </div>
