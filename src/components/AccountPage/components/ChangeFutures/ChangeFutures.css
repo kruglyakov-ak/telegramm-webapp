@@ -1,13 +1,16 @@
 .select-wrapper {
-    width: 100%;
+  width: 100%;
 }
 
 .change-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: rotate(90deg);
+
 }
 
 .change-icon svg:last-child {
-    transform: rotateZ(180deg);
+  transform: rotateZ(180deg);
 }
