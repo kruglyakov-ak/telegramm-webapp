@@ -1,8 +1,5 @@
 import React from "react";
-import Link from "../../../Link/Link";
-import Button from "../../../Button/Button";
 import BuyingFutures from "../BuyingFutures/BuyingFutures";
-import { AppRouterPath } from "../../../../constants";
 import "./DerebitAccount.css";
 
 const options = [
@@ -17,10 +14,6 @@ const DerebitAccount = () => {
 
       <div className="actions-title">Покупка фьючерса</div>
       <BuyingFutures currencyOptions={options} />
-
-      <Link to={AppRouterPath.Main}>
-        <Button>К списку аккаунтов</Button>
-      </Link>
     </div>
   );
 };

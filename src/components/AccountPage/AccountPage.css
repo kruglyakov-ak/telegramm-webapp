@@ -2,3 +2,8 @@
     text-align: center;
     padding-bottom: 30px;
 }
+
+.back-button {
+    background-color: var(--tg-theme-secondary-bg-color);
+    color: var(--tg-theme-subtitle-text-color);
+}

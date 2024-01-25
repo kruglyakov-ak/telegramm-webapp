@@ -58,7 +58,7 @@ const CreateAccountForm = () => {
       <Button>Сохранить</Button>
 
       <Link to={AppRouterPath.Main}>
-        <Button>Отмена</Button>
+        <Button className="back-button">Отмена</Button>
       </Link>
     </form>
   );
