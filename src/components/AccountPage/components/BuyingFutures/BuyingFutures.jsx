@@ -29,8 +29,6 @@ const BuyingFutures = ({ currencyOptions = [] }) => {
         onChange={(e) => setAmount(e.target.value)}
       />
       <div className="all-amount-wrapper">
-        <Button></Button>
-
         <Button>На всю сумму USDT</Button>
       </div>
       <Button>Потвердить</Button>
