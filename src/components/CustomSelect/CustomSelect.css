@@ -27,9 +27,9 @@
   position: absolute;
   background: var(--tg-theme-bg-color);
   color: var(--tg-theme-button-color);
-  top: 0;
+  top: -23px;
   padding: 8px;
-  font-size: 0.8em;
+  font-size: 0.7em;
 }
 
 .arrow {
