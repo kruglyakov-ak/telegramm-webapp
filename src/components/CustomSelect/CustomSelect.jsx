@@ -72,7 +72,7 @@ const CustomSelect = ({
         >
           {selected?.label || placeholder}
         </div>
-
+        {selected && <div className="placeholder-top">{placeholder}</div>}
         <div className="arrow" onClick={selectClikHandler}>
           <svg
             onClick={selectClikHandler}

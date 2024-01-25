@@ -15,11 +15,21 @@
   cursor: pointer;
   width: 100%;
   height: fit-content;
+  position: relative;
 }
 
 .placeholder {
   height: fit-content;
   font-size: inherit;
+}
+
+.placeholder-top {
+  position: absolute;
+  background: var(--tg-theme-bg-color);
+  color: var(--tg-theme-button-color);
+  top: 0;
+  padding: 8px;
+  font-size: 0.8em;
 }
 
 .arrow {
@@ -41,7 +51,6 @@
   border-radius: 4px;
   border: 1px solid var(--tg-theme-button-color);
   background: var(--tg-theme-bg-color);
-  box-shadow: var(--shadow);
   padding: 6px;
   top: calc(100% + 6px);
   z-index: 2;
