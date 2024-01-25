@@ -20,7 +20,7 @@
 
 .placeholder {
   height: fit-content;
-  font-size: inherit;
+  font-size: 0.8em;
 }
 
 .placeholder-top {
