@@ -1,0 +1,9 @@
+.actions-button {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.actions-button button {
+  width: 100%;
+}

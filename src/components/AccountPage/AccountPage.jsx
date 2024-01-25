@@ -9,7 +9,7 @@ import "./AccountPage.css";
 
 const AccountPage = () => {
   let { id } = useLoaderData();
-  const isBinance = false;
+  const isBinance = true;
   return (
     <div>
       <h1 className="account-page-title">Account {id}</h1>
