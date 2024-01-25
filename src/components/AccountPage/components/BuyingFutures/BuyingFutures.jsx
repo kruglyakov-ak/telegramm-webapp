@@ -24,7 +24,7 @@ const BuyingFutures = ({ currencyOptions = [] }) => {
       <div className="amount-wrapper">
         <Input
           title={"Сумма в USDT:"}
-          type="number"
+          type="text"
           placeholder="Сумма в USDT"
           value={amount}
           className="amount-input"
