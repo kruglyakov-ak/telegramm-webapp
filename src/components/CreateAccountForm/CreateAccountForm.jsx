@@ -77,27 +77,39 @@ const CreateAccountForm = () => {
     },
   });
 
-  // React.useEffect(() => {
-  //   const subscription = watch((value, { name, type }) => {
-  //     if (
-  //       name === "accountName" &&
-  //       value.accountName !== "" &&
-  //       value.accountName.length > 2 &&
-  //       value.accountName.length < 32
-  //     ) {
-  //       setError("accountName", undefined);
-  //     }
+  React.useEffect(() => {
+    const subscription = watch((value, { name, type }) => {
+      if (
+        name === "accountName" &&
+        value.accountName !== "" &&
+        value.accountName.length > 2 &&
+        value.accountName.length < 32
+      ) {
+        setError("accountName", undefined);
+      }
 
-  //     // if (name === "mainApiKey" && value.mainApiKey !== "") {
-  //     //   setError("mainApiKey", undefined);
-  //     // }
+      if (
+        name === "mainApiKey" &&
+        value.mainApiKey !== "" &&
+        getValues("exchange") === "binance"
+          ? value.mainApiKey.length === 64
+          : value.mainApiKey.length === 8
+      ) {
+        setError("mainApiKey", undefined);
+      }
 
-  //     // if (name === "secondApiKey" && value.secondApiKey !== "") {
-  //     //   setError("secondApiKey", undefined);
-  //     // }
-  //   });
-  //   return () => subscription.unsubscribe();
-  // }, [setError, watch]);
+      if (
+        name === "secondApiKey" &&
+        value.secondApiKey !== "" &&
+        getValues("exchange") === "binance"
+          ? value.secondApiKey.length === 64
+          : value.secondApiKey.length === 43
+      ) {
+        setError("secondApiKey", undefined);
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [setError, watch]);
 
   return (
     <form className="create-account-form" onSubmit={handleSubmit(onSubmit)}>
