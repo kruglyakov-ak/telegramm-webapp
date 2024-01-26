@@ -51,7 +51,13 @@ const CreateAccountForm = () => {
   React.useEffect(() => {
     const subscription = watch((value, { name, type }) => {
       if (name === "accountName" && value.accountName !== "") {
-        setError("accountName", undefined);
+        if (value.accountName.length < 2) {
+          setError("accountName", "Имя слишком короткое");
+        } else if (value.accountName.length > 32) {
+          setError("accountName", "Имя слишком длинное");
+        } else {
+          setError("accountName", undefined);
+        }
       }
 
       if (name === "mainApiKey" && value.mainApiKey !== "") {
