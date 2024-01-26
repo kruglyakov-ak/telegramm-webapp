@@ -20,6 +20,7 @@ const CreateAccountForm = () => {
     setValue,
     setError,
     getValues,
+    watch,
     formState: { errors },
   } = useForm();
   const [selectedOption, setSelectionOption] = React.useState(null);
@@ -51,7 +52,7 @@ const CreateAccountForm = () => {
           title={"Название аккаунта:"}
           type="text"
           placeholder="Название аккаунта"
-          value={getValues('accountName')}
+          value={watch("accountName", false)}
           {...register("accountName", { required: "Enter account name" })}
         />
         {errors.exchange && (
@@ -80,7 +81,7 @@ const CreateAccountForm = () => {
       <div className="input-wrapper">
         <Input
           title={"Main API KEY:"}
-          value={getValues('mainApiKey')}
+          value={watch("mainApiKey", false)}
           type="text"
           placeholder="Main API KEY"
           {...register("mainApiKey", { required: "Enter main api key" })}
@@ -94,7 +95,7 @@ const CreateAccountForm = () => {
           title={"SECOND API KEY:"}
           type="text"
           placeholder="SECOND API KEY"
-          value={getValues('secondApiKey')}
+          value={watch("secondApiKey", false)}
           {...register("secondApiKey", { required: "Enter second api key" })}
         />
         {errors.exchange && (
