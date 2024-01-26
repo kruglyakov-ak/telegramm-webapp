@@ -44,14 +44,19 @@ const CreateAccountForm = () => {
 
   return (
     <form className="create-account-form" onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        title={"Название аккаунта:"}
-        type="text"
-        placeholder="Название аккаунта"
-        value={accountName}
-        onChange={(e) => setAccountName(e.target.value)}
-        {...register("accountName")}
-      />
+      <div className="input-wrapper">
+        <Input
+          title={"Название аккаунта:"}
+          type="text"
+          placeholder="Название аккаунта"
+          value={accountName}
+          onChange={(e) => setAccountName(e.target.value)}
+          {...register("accountName", { required: "Enter account name" })}
+        />
+        {errors.exchange && (
+          <span className={"error"}>{errors.exchange.message}</span>
+        )}
+      </div>
 
       <Controller
         name="exchange"
@@ -71,23 +76,32 @@ const CreateAccountForm = () => {
           </div>
         )}
       />
-
-      <Input
-        title={"Main API KEY:"}
-        value={mainApiKey}
-        onChange={(e) => setMainApiKey(e.target.value)}
-        type="text"
-        placeholder="Main API KEY"
-        {...register("mainApiKey")}
-      />
-      <Input
-        title={"SECOND API KEY:"}
-        type="text"
-        placeholder="SECOND API KEY"
-        value={secondApiKey}
-        onChange={(e) => setSecondApiKey(e.target.value)}
-        {...register("secondApiKey")}
-      />
+      <div className="input-wrapper">
+        <Input
+          title={"Main API KEY:"}
+          value={mainApiKey}
+          onChange={(e) => setMainApiKey(e.target.value)}
+          type="text"
+          placeholder="Main API KEY"
+          {...register("mainApiKey", { required: "Enter main api key" })}
+        />
+        {errors.exchange && (
+          <span className={"error"}>{errors.mainApiKey.message}</span>
+        )}
+      </div>
+      <div className="input-wrapper">
+        <Input
+          title={"SECOND API KEY:"}
+          type="text"
+          placeholder="SECOND API KEY"
+          value={secondApiKey}
+          onChange={(e) => setSecondApiKey(e.target.value)}
+          {...register("secondApiKey", { required: "Enter second api key" })}
+        />
+        {errors.exchange && (
+          <span className={"error"}>{errors.secondApiKey.message}</span>
+        )}
+      </div>
 
       <Button type="submit">Сохранить</Button>
 
