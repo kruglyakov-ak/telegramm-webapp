@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import Button from "../Button/Button";
 import Link from "../Link/Link";
@@ -19,7 +19,6 @@ const CreateAccountForm = () => {
     handleSubmit,
     setValue,
     setError,
-    getValues,
     watch,
     formState: { errors },
   } = useForm();
