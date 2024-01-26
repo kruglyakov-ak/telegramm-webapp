@@ -32,13 +32,16 @@ const CreateAccountForm = () => {
   };
 
   const onSubmit = ({ accountName, exchange, mainApiKey, secondApiKey }) => {
-    console.log({
-      accountName,
-      exchange,
-      mainApiKey,
-      secondApiKey,
-    });
+    console.log(accountName, exchange, mainApiKey, secondApiKey);
   };
+
+  React.useEffect(() => {
+    const subscription = watch((value, { name, type }) =>
+      console.log(value, name, type)
+    );
+    
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   return (
     <form className="create-account-form" onSubmit={handleSubmit(onSubmit)}>
@@ -47,7 +50,7 @@ const CreateAccountForm = () => {
           title={"Название аккаунта:"}
           type="text"
           placeholder="Название аккаунта"
-          value={watch("accountName", '')}
+          value={watch("accountName", "")}
           {...register("accountName", { required: "Enter account name" })}
         />
         {errors.accountName && (
@@ -76,7 +79,7 @@ const CreateAccountForm = () => {
       <div className="input-wrapper">
         <Input
           title={"Main API KEY:"}
-          value={watch("mainApiKey", '')}
+          value={watch("mainApiKey", "")}
           type="text"
           placeholder="Main API KEY"
           {...register("mainApiKey", { required: "Enter main api key" })}
@@ -90,7 +93,7 @@ const CreateAccountForm = () => {
           title={"SECOND API KEY:"}
           type="text"
           placeholder="SECOND API KEY"
-          value={watch("secondApiKey", '')}
+          value={watch("secondApiKey", "")}
           {...register("secondApiKey", { required: "Enter second api key" })}
         />
         {errors.secondApiKey && (
