@@ -18,7 +18,7 @@ const CreateAccountForm = () => {
     control,
     handleSubmit,
     setValue,
-
+    setError,
     formState: { errors },
   } = useForm();
   const [accountName, setAccountName] = React.useState("");
@@ -31,6 +31,7 @@ const CreateAccountForm = () => {
       options.find((option) => option.value === value) || null
     );
     setValue("exchange", value);
+    setError("exchange", undefined);
   };
 
   const onSubmit = ({ accountName, exchange, mainApiKey, secondApiKey }) => {
