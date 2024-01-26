@@ -8,7 +8,7 @@ import "./AccountList.css";
 
 function AccountList(props) {
   const { tg } = useTelegram();
-  const [accounts, setAccounts] = useState([]);
+  const [accounts, setAccounts] = useState({ data: [] });
 
   const fetchAccounts = useCallback(async () => {
     try {
@@ -26,7 +26,7 @@ function AccountList(props) {
   }, [tg.initData]);
 
   useEffect(() => {
-    setAccounts(fetchAccounts().data);
+    setAccounts(fetchAccounts());
   }, [fetchAccounts, tg.initData]);
 
   return (
@@ -35,7 +35,7 @@ function AccountList(props) {
         <Button>Добавить аккаунт</Button>
       </Link>
 
-      {accounts.map((account) => (
+      {accounts.data.map((account) => (
         <Link to={AppRouterPath.Account(account)}>
           <Button key={account}>Аккаунт {account}</Button>
         </Link>
