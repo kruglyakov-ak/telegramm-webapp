@@ -48,7 +48,7 @@ const CreateAccountForm = () => {
           title={"Название аккаунта:"}
           type="text"
           placeholder="Название аккаунта"
-          value={watch("accountName", false)}
+          value={watch("accountName", '')}
           {...register("accountName", { required: "Enter account name" })}
         />
         {errors.exchange && (
@@ -77,7 +77,7 @@ const CreateAccountForm = () => {
       <div className="input-wrapper">
         <Input
           title={"Main API KEY:"}
-          value={watch("mainApiKey", false)}
+          value={watch("mainApiKey", '')}
           type="text"
           placeholder="Main API KEY"
           {...register("mainApiKey", { required: "Enter main api key" })}
@@ -91,7 +91,7 @@ const CreateAccountForm = () => {
           title={"SECOND API KEY:"}
           type="text"
           placeholder="SECOND API KEY"
-          value={watch("secondApiKey", false)}
+          value={watch("secondApiKey", '')}
           {...register("secondApiKey", { required: "Enter second api key" })}
         />
         {errors.exchange && (
