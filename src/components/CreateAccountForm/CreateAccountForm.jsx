@@ -40,12 +40,20 @@ const CreateAccountForm = () => {
     });
   };
 
+  const accountName = register("accountName", {
+    required: "Enter account name",
+  });
+  const mainApiKey = register("mainApiKey", { required: "Enter main api key" });
+  const secondApiKey = register("secondApiKey", {
+    required: "Enter second api key",
+  });
+
   React.useEffect(() => {
     const subscription = watch((value, { name, type }) =>
       console.log(value, name, type)
-    )
-    return () => subscription.unsubscribe()
-  }, [watch])
+    );
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   return (
     <form className="create-account-form" onSubmit={handleSubmit(onSubmit)}>
@@ -54,8 +62,9 @@ const CreateAccountForm = () => {
           title={"Название аккаунта:"}
           type="text"
           placeholder="Название аккаунта"
-          value={''}
-          {...(register("accountName", { required: "Enter account name" }))}
+          name={accountName.name}
+          onChange={accountName.onChange}
+          ref={accountName.ref}
         />
         {errors.accountName && (
           <span className={"error"}>{errors.accountName.message}</span>
@@ -83,10 +92,11 @@ const CreateAccountForm = () => {
       <div className="input-wrapper">
         <Input
           title={"Main API KEY:"}
-          value={''}
           type="text"
           placeholder="Main API KEY"
-          {...(register("mainApiKey", { required: "Enter main api key" }))}
+          name={mainApiKey.name}
+          onChange={mainApiKey.onChange}
+          ref={mainApiKey.ref}
         />
         {errors.mainApiKey && (
           <span className={"error"}>{errors.mainApiKey.message}</span>
@@ -97,8 +107,9 @@ const CreateAccountForm = () => {
           title={"SECOND API KEY:"}
           type="text"
           placeholder="SECOND API KEY"
-          value={''}
-          {...(register("secondApiKey", { required: "Enter second api key" }))}
+          name={secondApiKey.name}
+          onChange={secondApiKey.onChange}
+          ref={secondApiKey.ref}
         />
         {errors.secondApiKey && (
           <span className={"error"}>{errors.secondApiKey.message}</span>
