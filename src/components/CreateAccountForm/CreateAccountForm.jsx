@@ -88,13 +88,13 @@ const CreateAccountForm = () => {
         setError("accountName", undefined);
       }
 
-      if (name === "mainApiKey" && value.mainApiKey !== "") {
-        setError("mainApiKey", undefined);
-      }
+      // if (name === "mainApiKey" && value.mainApiKey !== "") {
+      //   setError("mainApiKey", undefined);
+      // }
 
-      if (name === "secondApiKey" && value.secondApiKey !== "") {
-        setError("secondApiKey", undefined);
-      }
+      // if (name === "secondApiKey" && value.secondApiKey !== "") {
+      //   setError("secondApiKey", undefined);
+      // }
     });
     return () => subscription.unsubscribe();
   }, [setError, watch]);
