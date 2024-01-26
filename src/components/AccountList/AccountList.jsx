@@ -13,7 +13,7 @@ function AccountList(props) {
   const fetchAccounts = useCallback(async () => {
     try {
       if (tg.initData) {
-        const accounts = await fetch(
+        const res = await fetch(
           "https://transfer.meraquant.com/accounts/",
           {
             method: "GET",
@@ -23,8 +23,8 @@ function AccountList(props) {
             },
           }
         );
-        await accounts.json();
-        return accounts.data;
+        await res.json();
+        return res.data;
       }
       return [];
     } catch (error) {
@@ -43,7 +43,7 @@ function AccountList(props) {
         <Button>Добавить аккаунт</Button>
       </Link>
 
-      {accounts.map((account) => (
+      {accounts.length > 0 && accounts.map((account) => (
         <Link to={AppRouterPath.Account(account)}>
           <Button key={account}>Аккаунт {account}</Button>
         </Link>
