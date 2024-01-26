@@ -50,7 +50,7 @@ const CreateAccountForm = () => {
           value={watch("accountName", '')}
           {...register("accountName", { required: "Enter account name" })}
         />
-        {errors.exchange && (
+        {errors.accountName && (
           <span className={"error"}>{errors.accountName.message}</span>
         )}
       </div>
@@ -81,7 +81,7 @@ const CreateAccountForm = () => {
           placeholder="Main API KEY"
           {...register("mainApiKey", { required: "Enter main api key" })}
         />
-        {errors.exchange && (
+        {errors.mainApiKey && (
           <span className={"error"}>{errors.mainApiKey.message}</span>
         )}
       </div>
@@ -93,7 +93,7 @@ const CreateAccountForm = () => {
           value={watch("secondApiKey", '')}
           {...register("secondApiKey", { required: "Enter second api key" })}
         />
-        {errors.exchange && (
+        {errors.secondApiKey && (
           <span className={"error"}>{errors.secondApiKey.message}</span>
         )}
       </div>
