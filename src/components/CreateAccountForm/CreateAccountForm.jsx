@@ -105,6 +105,7 @@ const CreateAccountForm = () => {
   React.useEffect(() => {
     const subscription = watch((value, { name, type }) => {
       if (
+        value.accountName &&
         name === "accountName" &&
         value.accountName !== "" &&
         value.accountName.length > 2 &&
@@ -114,6 +115,7 @@ const CreateAccountForm = () => {
       }
 
       if (
+        value.mainApiKey &&
         name === "mainApiKey" &&
         value.mainApiKey !== "" &&
         getValues("exchange") === "binance"
@@ -124,6 +126,7 @@ const CreateAccountForm = () => {
       }
 
       if (
+        value.secondApiKey &&
         name === "secondApiKey" &&
         value.secondApiKey !== "" &&
         getValues("exchange") === "binance"
