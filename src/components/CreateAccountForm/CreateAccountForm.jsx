@@ -41,10 +41,6 @@ const CreateAccountForm = () => {
     });
   };
 
-  useEffect(() => {
-    console.log(getValues());
-  }, [getValues]);
-
   return (
     <form className="create-account-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="input-wrapper">
