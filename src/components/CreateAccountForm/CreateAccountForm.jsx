@@ -1,4 +1,5 @@
 import React from "react";
+import { useForm, Controller } from "react-hook-form";
 import Button from "../Button/Button";
 import Link from "../Link/Link";
 import Input from "../Input/Input";
@@ -12,6 +13,14 @@ const options = [
 ];
 
 const CreateAccountForm = () => {
+  const {
+    register,
+    control,
+    handleSubmit,
+    setValue,
+
+    formState: { errors },
+  } = useForm();
   const [accountName, setAccountName] = React.useState("");
   const [selectedOption, setSelectionOption] = React.useState(null);
   const [mainApiKey, setMainApiKey] = React.useState("");
@@ -21,23 +30,49 @@ const CreateAccountForm = () => {
     setSelectionOption(
       options.find((option) => option.value === value) || null
     );
+    setValue("exchange", value);
+  };
+
+  const onSubmit = ({ accountName, exchange, mainApiKey, secondApiKey }) => {
+    console.log({
+      accountName,
+      exchange,
+      mainApiKey,
+      secondApiKey,
+    });
   };
 
   return (
-    <form className="create-account-form">
+    <form className="create-account-form" onSubmit={handleSubmit(onSubmit)}>
       <Input
         title={"Название аккаунта:"}
         type="text"
         placeholder="Название аккаунта"
         value={accountName}
         onChange={(e) => setAccountName(e.target.value)}
+        {...register("accountName")}
       />
 
-      <CustomSelect
-        placeholder={"Выбор биржи"}
-        options={options}
-        selected={selectedOption}
-        onChange={exchangeSelectChangeHandler}
+      <Controller
+        name="exchange"
+        control={control}
+        rules={{ required: "Choose exchange" }}
+        render={() => (
+          <>
+            <CustomSelect
+              placeholder={"Выбор биржи"}
+              options={options}
+              selected={selectedOption}
+              onChange={exchangeSelectChangeHandler}
+            />
+            {errors.exchange && (
+              <>
+                <br />
+                <span className={"error"}>{errors.exchange.message}</span>
+              </>
+            )}
+          </>
+        )}
       />
 
       <Input
@@ -46,6 +81,7 @@ const CreateAccountForm = () => {
         onChange={(e) => setMainApiKey(e.target.value)}
         type="text"
         placeholder="Main API KEY"
+        {...register("mainApiKey")}
       />
       <Input
         title={"SECOND API KEY:"}
@@ -53,9 +89,10 @@ const CreateAccountForm = () => {
         placeholder="SECOND API KEY"
         value={secondApiKey}
         onChange={(e) => setSecondApiKey(e.target.value)}
+        {...register("secondApiKey")}
       />
 
-      <Button>Сохранить</Button>
+      <Button type="submit">Сохранить</Button>
 
       <Link to={AppRouterPath.Main}>
         <Button className="back-button">Отмена</Button>
