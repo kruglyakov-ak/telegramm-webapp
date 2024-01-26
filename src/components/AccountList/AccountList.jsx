@@ -23,9 +23,9 @@ function AccountList(props) {
             },
           }
         );
-        console.log(res.json());
-        await res.json();
-        return res.data;
+        const resData = await res.json();
+        console.log(resData);
+        return resData.data;
       }
       return [];
     } catch (error) {
