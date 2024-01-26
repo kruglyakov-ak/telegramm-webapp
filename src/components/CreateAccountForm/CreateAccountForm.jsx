@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import Button from "../Button/Button";
 import Link from "../Link/Link";
@@ -25,7 +26,7 @@ const CreateAccountForm = () => {
     watch,
     formState: { errors },
   } = useForm();
-
+  const navigate = useNavigate();
   const postNewAccount = async (data) => {
     try {
       if (tg.initData) {
@@ -43,7 +44,7 @@ const CreateAccountForm = () => {
           }),
         });
 
-        tg.showAlert("Аккаунт успешно создан");
+        tg.showAlert("Аккаунт успешно создан", navigate(AppRouterPath.Main));
       }
     } catch (error) {
       console.log(error);
