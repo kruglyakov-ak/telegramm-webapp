@@ -19,6 +19,7 @@ const CreateAccountForm = () => {
     handleSubmit,
     setValue,
     setError,
+    getValues,
     watch,
     formState: { errors },
   } = useForm();
@@ -51,9 +52,29 @@ const CreateAccountForm = () => {
       message: "Максимальная длина имени 32",
     },
   });
-  register("mainApiKey", { required: "Enter main api key" });
+  register("mainApiKey", {
+    required: "Enter main api key",
+    validate: (val) => {
+      if (
+        getValues("exchange") === "binance"
+          ? val.length !== 64
+          : val.length !== 8
+      ) {
+        return "Проверьте правильность введенного ключа";
+      }
+    },
+  });
   register("secondApiKey", {
     required: "Enter second api key",
+    validate: (val) => {
+      if (
+        getValues("exchange") === "binance"
+          ? val.length !== 64
+          : val.length !== 43
+      ) {
+        return "Проверьте правильность введенного ключа";
+      }
+    },
   });
 
   React.useEffect(() => {
