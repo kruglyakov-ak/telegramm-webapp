@@ -9,7 +9,8 @@ function App({ children }) {
     tg.ready();
     tg.expand();
     console.log(tg.initData);
-    console.log(tg.version);
+    console.log(tg.platform);
+    console.log(tg.initDataUnsafe);
   }, [tg]);
 
   return <div className="app">{children}</div>;
