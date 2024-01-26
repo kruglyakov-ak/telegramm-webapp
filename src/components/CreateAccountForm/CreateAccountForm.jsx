@@ -39,7 +39,7 @@ const CreateAccountForm = () => {
     const subscription = watch((value, { name, type }) =>
       console.log(value, name, type)
     );
-    
+
     return () => subscription.unsubscribe();
   }, [watch]);
 
@@ -51,7 +51,7 @@ const CreateAccountForm = () => {
           type="text"
           placeholder="Название аккаунта"
           value={watch("accountName", "")}
-          {...register("accountName", { required: "Enter account name" })}
+          {...register("accountName", { required: true })}
         />
         {errors.accountName && (
           <span className={"error"}>{errors.accountName.message}</span>
@@ -61,7 +61,7 @@ const CreateAccountForm = () => {
       <Controller
         name="exchange"
         control={control}
-        rules={{ required: "Choose exchange" }}
+        rules={{ required: true }}
         render={() => (
           <div className="input-wrapper">
             <CustomSelect
@@ -82,7 +82,7 @@ const CreateAccountForm = () => {
           value={watch("mainApiKey", "")}
           type="text"
           placeholder="Main API KEY"
-          {...register("mainApiKey", { required: "Enter main api key" })}
+          {...register("mainApiKey", { required: true })}
         />
         {errors.mainApiKey && (
           <span className={"error"}>{errors.mainApiKey.message}</span>
@@ -94,7 +94,7 @@ const CreateAccountForm = () => {
           type="text"
           placeholder="SECOND API KEY"
           value={watch("secondApiKey", "")}
-          {...register("secondApiKey", { required: "Enter second api key" })}
+          {...register("secondApiKey", { required: true })}
         />
         {errors.secondApiKey && (
           <span className={"error"}>{errors.secondApiKey.message}</span>
