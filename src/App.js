@@ -11,6 +11,7 @@ function App({ children }) {
     console.log(tg.initData);
     console.log(tg.platform);
     console.log(tg.initDataUnsafe);
+    console.log(tg);
   }, [tg]);
 
   return <div className="app">{children}</div>;
