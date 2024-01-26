@@ -13,30 +13,25 @@ function AccountList(props) {
   const fetchAccounts = useCallback(async () => {
     try {
       if (tg.initData) {
-        const res = await fetch(
-          "https://transfer.meraquant.com/accounts/",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: tg.initData,
-            },
-          }
-        );
+        const res = await fetch("https://transfer.meraquant.com/accounts/", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: tg.initData,
+          },
+        });
         const resData = await res.json();
         console.log(resData);
-        return resData.data;
+        setAccounts(resData.data);
       }
-      return [];
     } catch (error) {
       console.log(error);
-      return [];
     }
   }, [tg.initData]);
 
   useEffect(() => {
-    setAccounts(fetchAccounts());
-  }, [fetchAccounts, tg.initData]);
+    fetchAccounts();
+  }, [fetchAccounts]);
 
   return (
     <div className="account-list">
@@ -44,11 +39,12 @@ function AccountList(props) {
         <Button>Добавить аккаунт</Button>
       </Link>
 
-      {accounts.length > 0 && accounts.map((account) => (
-        <Link to={AppRouterPath.Account(account)}>
-          <Button key={account}>Аккаунт {account}</Button>
-        </Link>
-      ))}
+      {accounts.length > 0 &&
+        accounts.map((account) => (
+          <Link to={AppRouterPath.Account(account)}>
+            <Button key={account}>Аккаунт {account}</Button>
+          </Link>
+        ))}
     </div>
   );
 }
