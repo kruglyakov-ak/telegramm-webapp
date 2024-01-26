@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Button from "../Button/Button";
 import Link from "../Link/Link";
@@ -39,6 +39,10 @@ const CreateAccountForm = () => {
       secondApiKey,
     });
   };
+
+  useEffect(() => {
+    console.log(getValues());
+  }, [getValues]);
 
   return (
     <form className="create-account-form" onSubmit={handleSubmit(onSubmit)}>
