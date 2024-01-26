@@ -49,11 +49,21 @@ const CreateAccountForm = () => {
   });
 
   React.useEffect(() => {
-    const subscription = watch((value, { name, type }) =>
-      console.log(value, name, type)
-    );
+    const subscription = watch((value, { name, type }) => {
+      if (value.accountName !== "") {
+        setError("accountName", undefined);
+      }
+
+      if (value.mainApiKey !== "") {
+        setError("mainApiKey", undefined);
+      }
+
+      if (value.secondApiKey !== "") {
+        setError("secondApiKey", undefined);
+      }
+    });
     return () => subscription.unsubscribe();
-  }, [watch]);
+  }, [setError, watch]);
 
   return (
     <form className="create-account-form" onSubmit={handleSubmit(onSubmit)}>
