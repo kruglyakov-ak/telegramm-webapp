@@ -9,6 +9,7 @@ function App({ children }) {
     tg.ready();
     tg.expand();
     console.log(tg.initData);
+    console.log(tg.version);
   }, [tg]);
 
   return <div className="app">{children}</div>;
