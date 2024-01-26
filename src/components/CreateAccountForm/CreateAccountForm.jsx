@@ -66,10 +66,7 @@ const CreateAccountForm = () => {
               onChange={exchangeSelectChangeHandler}
             />
             {errors.exchange && (
-              <>
-                <br />
-                <span className={"error"}>{errors.exchange.message}</span>
-              </>
+              <span className={"error"}>{errors.exchange.message}</span>
             )}
           </div>
         )}

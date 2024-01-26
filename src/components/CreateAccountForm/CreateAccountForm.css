@@ -17,10 +17,10 @@
   position: relative;
 }
 
-.error {
+.input-wrapper .error {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom:-12px;
+  left: 12px;
   color: var(--tg-theme-destructive-text-color);
   font-size: 0.6em;
 }
