@@ -41,7 +41,7 @@ const CreateAccountForm = () => {
   };
 
   register("accountName", {
-    required: "Enter account name",
+    required: true,
     minLength: 2,
     maxLength: 32,
   });
@@ -71,6 +71,16 @@ const CreateAccountForm = () => {
     });
     return () => subscription.unsubscribe();
   }, [setError, watch]);
+
+  React.useEffect(() => {
+    setError("accountName", {
+      types: {
+        required: "Задайте имя аккаунта",
+        minLength: "Минимальная длина имени 2",
+        maxLength: "Максимальная длина имени 32",
+      },
+    })
+  }, [setError])
 
   return (
     <form className="create-account-form" onSubmit={handleSubmit(onSubmit)}>
