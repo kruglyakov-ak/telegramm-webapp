@@ -50,15 +50,15 @@ const CreateAccountForm = () => {
 
   React.useEffect(() => {
     const subscription = watch((value, { name, type }) => {
-      if (value.accountName !== "") {
+      if (name === "accountName" && value.accountName !== "") {
         setError("accountName", undefined);
       }
 
-      if (value.mainApiKey !== "") {
+      if (name === "mainApiKey" && value.mainApiKey !== "") {
         setError("mainApiKey", undefined);
       }
 
-      if (value.secondApiKey !== "") {
+      if (name === "secondApiKey" && value.secondApiKey !== "") {
         setError("secondApiKey", undefined);
       }
     });
