@@ -5,6 +5,7 @@ import Link from "../Link/Link";
 import Input from "../Input/Input";
 import CustomSelect from "../CustomSelect/CustomSelect";
 import { AppRouterPath } from "../../constants";
+import { useTelegram } from "../../hooks/useTelegram";
 import "./CreateAccountForm.css";
 
 const options = [
@@ -13,6 +14,7 @@ const options = [
 ];
 
 const CreateAccountForm = () => {
+  const { tg } = useTelegram();
   const {
     register,
     control,
@@ -23,6 +25,29 @@ const CreateAccountForm = () => {
     watch,
     formState: { errors },
   } = useForm();
+
+  const postNewAccount = async (data) => {
+    try {
+      if (tg.initData) {
+        await fetch("https://transfer.meraquant.com/accounts/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: tg.initData,
+          },
+          body: JSON.stringify({
+            title: data.accountName,
+            market: data.exchange,
+            first_key: data.mainApiKey,
+            second_key: data.secondApiKey,
+          }),
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const [selectedOption, setSelectionOption] = React.useState(null);
   const exchangeSelectChangeHandler = (value) => {
     setSelectionOption(
@@ -33,7 +58,7 @@ const CreateAccountForm = () => {
   };
 
   const onSubmit = ({ accountName, exchange, mainApiKey, secondApiKey }) => {
-    console.log({
+    postNewAccount({
       accountName,
       exchange,
       mainApiKey,
