@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import Link from "../Link/Link";
 import Button from "../Button/Button";
 import { AppRouterPath } from "../../constants";
@@ -6,29 +6,28 @@ import { useTelegram } from "../../hooks/useTelegram";
 
 import "./AccountList.css";
 
-const accounts = [0, 1, 2, 3, 4, 5, 6, 7];
 function AccountList(props) {
   const { tg } = useTelegram();
-
-  const fetchAccounts = async () => {
+  const [accounts, setAccounts] = useState([]);
+  
+  const fetchAccounts = useCallback(async () => {
     try {
       const accounts = await fetch("https://transfer.meraquant.com/accounts/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": tg.initData,
+          Authorization: tg.initData,
         },
       });
-      console.log(accounts);
       return accounts;
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [tg.initData]);
 
   useEffect(() => {
-    fetchAccounts();
-  });
+    setAccounts(fetchAccounts());
+  }, [fetchAccounts, tg.initData]);
 
   return (
     <div className="account-list">
