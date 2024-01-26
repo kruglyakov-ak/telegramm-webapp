@@ -32,16 +32,20 @@ const CreateAccountForm = () => {
   };
 
   const onSubmit = ({ accountName, exchange, mainApiKey, secondApiKey }) => {
-    console.log(accountName, exchange, mainApiKey, secondApiKey);
+    console.log({
+      accountName,
+      exchange,
+      mainApiKey,
+      secondApiKey,
+    });
   };
 
   React.useEffect(() => {
     const subscription = watch((value, { name, type }) =>
       console.log(value, name, type)
-    );
-
-    return () => subscription.unsubscribe();
-  }, [watch]);
+    )
+    return () => subscription.unsubscribe()
+  }, [watch])
 
   return (
     <form className="create-account-form" onSubmit={handleSubmit(onSubmit)}>
@@ -50,8 +54,8 @@ const CreateAccountForm = () => {
           title={"Название аккаунта:"}
           type="text"
           placeholder="Название аккаунта"
-          value={watch("accountName", "")}
-          {...register("accountName", { required: true })}
+          value={watch("accountName", '')}
+          {...(register("accountName", { required: "Enter account name" }))}
         />
         {errors.accountName && (
           <span className={"error"}>{errors.accountName.message}</span>
@@ -61,7 +65,7 @@ const CreateAccountForm = () => {
       <Controller
         name="exchange"
         control={control}
-        rules={{ required: true }}
+        rules={{ required: "Choose exchange" }}
         render={() => (
           <div className="input-wrapper">
             <CustomSelect
@@ -79,10 +83,10 @@ const CreateAccountForm = () => {
       <div className="input-wrapper">
         <Input
           title={"Main API KEY:"}
-          value={watch("mainApiKey", "")}
+          value={watch("mainApiKey", '')}
           type="text"
           placeholder="Main API KEY"
-          {...register("mainApiKey", { required: true })}
+          {...(register("mainApiKey", { required: "Enter main api key" }))}
         />
         {errors.mainApiKey && (
           <span className={"error"}>{errors.mainApiKey.message}</span>
@@ -93,8 +97,8 @@ const CreateAccountForm = () => {
           title={"SECOND API KEY:"}
           type="text"
           placeholder="SECOND API KEY"
-          value={watch("secondApiKey", "")}
-          {...register("secondApiKey", { required: true })}
+          value={watch("secondApiKey", '')}
+          {...(register("secondApiKey", { required: "Enter second api key" }))}
         />
         {errors.secondApiKey && (
           <span className={"error"}>{errors.secondApiKey.message}</span>
