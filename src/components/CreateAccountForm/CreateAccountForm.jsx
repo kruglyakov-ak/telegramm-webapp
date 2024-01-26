@@ -42,6 +42,8 @@ const CreateAccountForm = () => {
             second_key: data.secondApiKey,
           }),
         });
+
+        tg.showAlert("Аккаунт успешно создан");
       }
     } catch (error) {
       console.log(error);
@@ -82,8 +84,8 @@ const CreateAccountForm = () => {
     validate: (val) => {
       if (
         getValues("exchange") === "binance"
-          ? val.length !== 64
-          : val.length !== 8
+          ? val?.length !== 64
+          : val?.length !== 8
       ) {
         return "Проверьте правильность введенного ключа";
       }
@@ -94,8 +96,8 @@ const CreateAccountForm = () => {
     validate: (val) => {
       if (
         getValues("exchange") === "binance"
-          ? val.length !== 64
-          : val.length !== 43
+          ? val?.length !== 64
+          : val?.length !== 43
       ) {
         return "Проверьте правильность введенного ключа";
       }
@@ -105,33 +107,33 @@ const CreateAccountForm = () => {
   React.useEffect(() => {
     const subscription = watch((value, { name, type }) => {
       if (
-        value.accountName &&
+        value?.accountName &&
         name === "accountName" &&
-        value.accountName !== "" &&
-        value.accountName.length > 2 &&
-        value.accountName.length < 32
+        value?.accountName !== "" &&
+        value?.accountName.length > 2 &&
+        value?.accountName.length < 32
       ) {
         setError("accountName", undefined);
       }
 
       if (
-        value.mainApiKey &&
+        value?.mainApiKey &&
         name === "mainApiKey" &&
-        value.mainApiKey !== "" &&
+        value?.mainApiKey !== "" &&
         getValues("exchange") === "binance"
-          ? value.mainApiKey.length === 64
-          : value.mainApiKey.length === 8
+          ? value?.mainApiKey.length === 64
+          : value?.mainApiKey.length === 8
       ) {
         setError("mainApiKey", undefined);
       }
 
       if (
-        value.secondApiKey &&
+        value?.secondApiKey &&
         name === "secondApiKey" &&
-        value.secondApiKey !== "" &&
+        value?.secondApiKey !== "" &&
         getValues("exchange") === "binance"
-          ? value.secondApiKey.length === 64
-          : value.secondApiKey.length === 43
+          ? value?.secondApiKey.length === 64
+          : value?.secondApiKey.length === 43
       ) {
         setError("secondApiKey", undefined);
       }
