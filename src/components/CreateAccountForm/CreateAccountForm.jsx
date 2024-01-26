@@ -19,13 +19,10 @@ const CreateAccountForm = () => {
     handleSubmit,
     setValue,
     setError,
+    getValues,
     formState: { errors },
   } = useForm();
-  const [accountName, setAccountName] = React.useState("");
   const [selectedOption, setSelectionOption] = React.useState(null);
-  const [mainApiKey, setMainApiKey] = React.useState("");
-  const [secondApiKey, setSecondApiKey] = React.useState("");
-
   const exchangeSelectChangeHandler = (value) => {
     setSelectionOption(
       options.find((option) => option.value === value) || null
@@ -50,12 +47,11 @@ const CreateAccountForm = () => {
           title={"Название аккаунта:"}
           type="text"
           placeholder="Название аккаунта"
-          value={accountName}
-          onChange={(e) => setAccountName(e.target.value)}
+          value={getValues('accountName')}
           {...register("accountName", { required: "Enter account name" })}
         />
         {errors.exchange && (
-          <span className={"error"}>{errors.exchange.message}</span>
+          <span className={"error"}>{errors.accountName.message}</span>
         )}
       </div>
 
@@ -80,8 +76,7 @@ const CreateAccountForm = () => {
       <div className="input-wrapper">
         <Input
           title={"Main API KEY:"}
-          value={mainApiKey}
-          onChange={(e) => setMainApiKey(e.target.value)}
+          value={getValues('mainApiKey')}
           type="text"
           placeholder="Main API KEY"
           {...register("mainApiKey", { required: "Enter main api key" })}
@@ -95,8 +90,7 @@ const CreateAccountForm = () => {
           title={"SECOND API KEY:"}
           type="text"
           placeholder="SECOND API KEY"
-          value={secondApiKey}
-          onChange={(e) => setSecondApiKey(e.target.value)}
+          value={getValues('secondApiKey')}
           {...register("secondApiKey", { required: "Enter second api key" })}
         />
         {errors.exchange && (
