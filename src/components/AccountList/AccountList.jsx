@@ -21,7 +21,6 @@ function AccountList(props) {
           },
         });
         const resData = await res.json();
-        console.log(resData);
         setAccounts(resData.data);
       }
     } catch (error) {
