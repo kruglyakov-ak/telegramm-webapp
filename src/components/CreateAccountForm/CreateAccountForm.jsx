@@ -109,7 +109,7 @@ const CreateAccountForm = () => {
       }
     });
     return () => subscription.unsubscribe();
-  }, [setError, watch]);
+  }, [getValues, setError, watch]);
 
   return (
     <form className="create-account-form" onSubmit={handleSubmit(onSubmit)}>
