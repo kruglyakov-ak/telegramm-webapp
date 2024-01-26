@@ -41,9 +41,15 @@ const CreateAccountForm = () => {
   };
 
   register("accountName", {
-    required: true,
-    minLength: 2,
-    maxLength: 32,
+    required: "Задайте имя аккаунта",
+    minLength: {
+      value: 2,
+      message: "Минимальная длина имени 2",
+    },
+    maxLength: {
+      value: 32,
+      message: "Максимальная длина имени 32",
+    },
   });
   register("mainApiKey", { required: "Enter main api key" });
   register("secondApiKey", {
@@ -73,7 +79,7 @@ const CreateAccountForm = () => {
   }, [setError, watch]);
 
   React.useEffect(() => {
-    setError("accountName", {
+    setError("ф", {
       types: {
         required: "Задайте имя аккаунта",
         minLength: "Минимальная длина имени 2",
