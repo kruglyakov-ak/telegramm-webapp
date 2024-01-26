@@ -24,7 +24,7 @@ function AccountList(props) {
           }
         );
         await res.json();
-        console.log(res.data);
+        console.log(res);
         return res.data;
       }
       return [];
