@@ -9,7 +9,7 @@ import "./AccountList.css";
 function AccountList(props) {
   const { tg } = useTelegram();
   const [accounts, setAccounts] = useState([]);
-  
+
   const fetchAccounts = useCallback(async () => {
     try {
       const accounts = await fetch("https://transfer.meraquant.com/accounts/", {
@@ -26,7 +26,7 @@ function AccountList(props) {
   }, [tg.initData]);
 
   useEffect(() => {
-    setAccounts(fetchAccounts());
+    setAccounts(fetchAccounts().data);
   }, [fetchAccounts, tg.initData]);
 
   return (
