@@ -42,6 +42,8 @@ const CreateAccountForm = () => {
 
   register("accountName", {
     required: "Enter account name",
+    minLength: 2,
+    maxLength: 32,
   });
   register("mainApiKey", { required: "Enter main api key" });
   register("secondApiKey", {
@@ -50,16 +52,13 @@ const CreateAccountForm = () => {
 
   React.useEffect(() => {
     const subscription = watch((value, { name, type }) => {
-      if (name === "accountName" && value.accountName !== "") {
-        
-        if (value.accountName.length < 2) {
-          console.log(value.accountName.length);
-          setError("accountName", "Имя слишком короткое");
-        } else if (value.accountName.length > 32) {
-          setError("accountName", "Имя слишком длинное");
-        } else {
-          setError("accountName", undefined);
-        }
+      if (
+        name === "accountName" &&
+        value.accountName !== "" &&
+        value.accountName.length > 2 &&
+        value.accountName.length < 32
+      ) {
+        setError("accountName", undefined);
       }
 
       if (name === "mainApiKey" && value.mainApiKey !== "") {
