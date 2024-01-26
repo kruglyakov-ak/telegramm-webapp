@@ -58,7 +58,7 @@ const CreateAccountForm = () => {
         control={control}
         rules={{ required: "Choose exchange" }}
         render={() => (
-          <>
+          <div className="input-wrapper">
             <CustomSelect
               placeholder={"Выбор биржи"}
               options={options}
@@ -71,7 +71,7 @@ const CreateAccountForm = () => {
                 <span className={"error"}>{errors.exchange.message}</span>
               </>
             )}
-          </>
+          </div>
         )}
       />
 
