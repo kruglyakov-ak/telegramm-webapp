@@ -26,7 +26,7 @@ function AccountList(props) {
     } catch (error) {
       console.log(error);
     }
-  }, [tg.initData]);
+  }, [tg]);
 
   useEffect(() => {
     fetchAccounts();
@@ -40,8 +40,8 @@ function AccountList(props) {
 
       {accounts.length > 0 &&
         accounts.map((account) => (
-          <Link to={AppRouterPath.Account(account)}>
-            <Button key={account}>Аккаунт {account}</Button>
+          <Link key={account.id} to={AppRouterPath.Account(account)}>
+            <Button key={account}>{account.title}</Button>
           </Link>
         ))}
     </div>
