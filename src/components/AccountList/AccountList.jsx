@@ -8,20 +8,28 @@ import "./AccountList.css";
 
 function AccountList(props) {
   const { tg } = useTelegram();
-  const [accounts, setAccounts] = useState({ data: [] });
+  const [accounts, setAccounts] = useState([]);
 
-  const fetchAccounts = useCallback(async () => {
+  const fetchAccounts = useCallback(() => {
     try {
-      const accounts = await fetch("https://transfer.meraquant.com/accounts/", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: tg.initData,
-        },
-      });
-      return accounts;
+      if (tg.initData) {
+        const accounts = fetch("https://transfer.meraquant.com/accounts/", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: tg.initData,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => data.data);
+
+        return accounts;
+      }
+
+      return [];
     } catch (error) {
       console.log(error);
+      return [];
     }
   }, [tg.initData]);
 
@@ -35,7 +43,7 @@ function AccountList(props) {
         <Button>Добавить аккаунт</Button>
       </Link>
 
-      {accounts.data.map((account) => (
+      {accounts.map((account) => (
         <Link to={AppRouterPath.Account(account)}>
           <Button key={account}>Аккаунт {account}</Button>
         </Link>
