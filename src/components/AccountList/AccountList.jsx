@@ -23,8 +23,8 @@ function AccountList(props) {
             },
           }
         );
+        console.log(res.json());
         await res.json();
-        console.log(res);
         return res.data;
       }
       return [];
