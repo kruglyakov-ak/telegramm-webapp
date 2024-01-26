@@ -10,22 +10,22 @@ function AccountList(props) {
   const { tg } = useTelegram();
   const [accounts, setAccounts] = useState([]);
 
-  const fetchAccounts = useCallback(() => {
+  const fetchAccounts = useCallback(async () => {
     try {
       if (tg.initData) {
-        const accounts = fetch("https://transfer.meraquant.com/accounts/", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: tg.initData,
-          },
-        })
-          .then((res) => res.json())
-          .then((data) => data.data);
-
-        return accounts;
+        const accounts = await fetch(
+          "https://transfer.meraquant.com/accounts/",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: tg.initData,
+            },
+          }
+        );
+        await accounts.json();
+        return accounts.data;
       }
-
       return [];
     } catch (error) {
       console.log(error);
