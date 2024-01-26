@@ -40,11 +40,11 @@ const CreateAccountForm = () => {
     });
   };
 
-  const accountName = register("accountName", {
+  register("accountName", {
     required: "Enter account name",
   });
-  const mainApiKey = register("mainApiKey", { required: "Enter main api key" });
-  const secondApiKey = register("secondApiKey", {
+  register("mainApiKey", { required: "Enter main api key" });
+  register("secondApiKey", {
     required: "Enter second api key",
   });
 
@@ -62,9 +62,8 @@ const CreateAccountForm = () => {
           title={"Название аккаунта:"}
           type="text"
           placeholder="Название аккаунта"
-          name={accountName.name}
-          onChange={accountName.onChange}
-          ref={accountName.ref}
+          onChange={(e) => setValue("accountName", e.target.value)}
+          value={watch("accountName")}
         />
         {errors.accountName && (
           <span className={"error"}>{errors.accountName.message}</span>
@@ -94,9 +93,8 @@ const CreateAccountForm = () => {
           title={"Main API KEY:"}
           type="text"
           placeholder="Main API KEY"
-          name={mainApiKey.name}
-          onChange={mainApiKey.onChange}
-          ref={mainApiKey.ref}
+          onChange={(e) => setValue("mainApiKey", e.target.value)}
+          value={watch("mainApiKey")}
         />
         {errors.mainApiKey && (
           <span className={"error"}>{errors.mainApiKey.message}</span>
@@ -107,9 +105,8 @@ const CreateAccountForm = () => {
           title={"SECOND API KEY:"}
           type="text"
           placeholder="SECOND API KEY"
-          name={secondApiKey.name}
-          onChange={secondApiKey.onChange}
-          ref={secondApiKey.ref}
+          onChange={(e) => setValue("secondApiKey", e.target.value)}
+          value={watch("secondApiKey")}
         />
         {errors.secondApiKey && (
           <span className={"error"}>{errors.secondApiKey.message}</span>
