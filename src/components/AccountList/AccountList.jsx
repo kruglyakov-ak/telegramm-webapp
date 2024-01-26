@@ -12,11 +12,11 @@ function AccountList(props) {
 
   const fetchAccounts = async () => {
     try {
-      const accounts = await fetch("http://192.168.88.27:8080/accounts/", {
+      const accounts = await fetch("https://transfer.meraquant.com/accounts/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Web-App-Init-Data": tg.initData,
+          "Authorization": tg.initData,
         },
       });
       console.log(accounts);
