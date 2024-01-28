@@ -2,15 +2,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: max-content;
+  height: 100%;
   row-gap: 20px;
   width: 100%;
+  padding-top: 40px;
 }
 
 .account-list .add-account-button {
   background-color: var(--tg-theme-secondary-bg-color);
   color: var(--tg-theme-accent-text-color);
   border: 1px solid var(--tg-theme-accent-text-color);
+  margin-bottom: 20px;
 }
 
 .add-account-button .plus {
