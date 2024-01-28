@@ -13,8 +13,6 @@ import CreateAccountForm from "./components/CreateAccountForm/CreateAccountForm"
 import AccountPage from "./components/AccountPage/AccountPage";
 import { AppRouterPath } from "./constants";
 
-const tg = window.Telegram.WebApp;
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -30,29 +28,9 @@ const router = createBrowserRouter(
       <Route
         path={AppRouterPath.AccountRoute}
         loader={async ({ params }) => {
-          try {
-            if (tg?.initData) {
-              const res = await fetch(
-                `https://transfer.meraquant.com/accounts/${params.id}`,
-                {
-                  method: "GET",
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: tg?.initData,
-                  },
-                }
-              );
-              const resData = await res.json();
-
-              return {
-                account: resData?.data,
-              };
-            }
-
-            return { account: null };
-          } catch (error) {
-            console.log(error);
-          }
+          return {
+            id: params.id,
+          };
         }}
         element={<AccountPage />}
       />
