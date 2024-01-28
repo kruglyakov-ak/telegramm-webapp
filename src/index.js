@@ -48,6 +48,8 @@ const router = createBrowserRouter(
                 account: resData?.data,
               };
             }
+
+            return { account: null };
           } catch (error) {
             console.log(error);
           }
