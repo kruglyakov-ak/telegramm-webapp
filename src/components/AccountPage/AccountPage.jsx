@@ -8,11 +8,11 @@ import { AppRouterPath } from "../../constants";
 import "./AccountPage.css";
 
 const AccountPage = () => {
-  let { id } = useLoaderData();
+  let { account } = useLoaderData();
   const isBinance = true;
-  return (
+  return account ? (
     <div className="account-page">
-      <h1 className="account-page-title">Account {id}</h1>
+      <h1 className="account-page-title">{account?.title}</h1>
 
       {isBinance ? <BinanceAccount /> : <DerebitAccount />}
 
@@ -20,7 +20,7 @@ const AccountPage = () => {
         <Button className="back-button">К списку аккаунтов</Button>
       </Link>
     </div>
-  );
+  ) : null;
 };
 
 export default AccountPage;
