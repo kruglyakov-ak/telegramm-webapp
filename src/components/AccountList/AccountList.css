@@ -6,3 +6,8 @@
   row-gap: 20px;
   width: 100%;
 }
+
+.account-list .add-account-button {
+  background-color: var(--tg-theme-secondary-bg-color);
+  color: var(--tg-theme-accent-text-color);
+}
