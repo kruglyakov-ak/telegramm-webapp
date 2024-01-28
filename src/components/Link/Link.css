@@ -1,7 +1,7 @@
 .link {
     color: var(--tg-theme-button-text-color);
     text-decoration: none;
-    width: max-content;    
+    width: 100%;    
     height: max-content;
     text-align: center;
 }
