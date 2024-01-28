@@ -144,6 +144,8 @@ const CreateAccountForm = () => {
 
   return (
     <form className="create-account-form" onSubmit={handleSubmit(onSubmit)}>
+      <h1>Создание аккаунта</h1>
+      
       <div className="input-wrapper">
         <Input
           title={"Название аккаунта:"}
