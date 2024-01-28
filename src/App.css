@@ -5,6 +5,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  min-height: 100dvh;
+  height: 100%;
+}
+
 body {
   background-color: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
@@ -12,7 +17,7 @@ body {
   font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Apple Color Emoji",
     "Segoe UI", Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
-    min-height: 100dvh;
+    height: 100%;
 }
 
 #root {
