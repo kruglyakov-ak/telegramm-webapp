@@ -11,7 +11,7 @@ const Input = ({
   return (
     <div className={`input-wrapper ${wrapperClassName}`}>
       <input
-        className={`input} ${className}`}
+        className={`input ${className}`}
         {...props}
       />
       <div className="input-placeholder">{placeholder}</div>
