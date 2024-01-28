@@ -7,15 +7,6 @@
   gap: 5px;
 }
 
-.change-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transform: rotate(90deg);
-
-}
-
 .change-icon svg:last-child {
   transform: rotateZ(180deg);
 }
