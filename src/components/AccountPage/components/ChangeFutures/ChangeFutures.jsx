@@ -44,6 +44,12 @@ const ChangeFutures = () => {
           onChange={sellFuturesSelectChangeHandler}
         />
 
+        <div className="change-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" width="25" height="25">
+            <polygon points="18.294 16.793 13.001 22.086 13.001 1 12.001 1 12.001 22.086 6.706 16.792 5.999 17.499 12.501 24 19.001 17.5 18.294 16.793" />
+          </svg>
+        </div>
+
         <CustomSelect
           placeholder={"Покупаемый фьючерс"}
           options={availableForBuyFuteresOptions}
