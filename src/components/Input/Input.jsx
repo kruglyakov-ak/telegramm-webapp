@@ -6,13 +6,12 @@ const Input = ({
   wrapperClassName = "",
   placeholder = "",
   className = "",
-  value = "",
   ...props
 }) => {
   return (
     <div className={`input-wrapper ${wrapperClassName}`}>
       <input
-        className={`input ${value !== "" ? "non-empty" : ""} ${className}`}
+        className={`input} ${className}`}
         {...props}
       />
       <div className="input-placeholder">{placeholder}</div>
