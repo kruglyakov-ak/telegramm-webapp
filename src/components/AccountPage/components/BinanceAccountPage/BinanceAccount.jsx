@@ -24,7 +24,7 @@ const BinanceAccount = () => {
     }
   };
   return (
-    <div>
+    <div className="binance-account">
       <div className="account-info"></div>
 
       <div className="actions-button">

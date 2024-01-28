@@ -1,3 +1,7 @@
+.binance-account {
+  width: 100%;
+}
+
 .actions-button {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
