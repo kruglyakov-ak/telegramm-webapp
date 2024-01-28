@@ -12,7 +12,6 @@
   background-color: var(--tg-theme-secondary-bg-color);
   color: var(--tg-theme-accent-text-color);
   border: 1px solid var(--tg-theme-accent-text-color);
-  margin-bottom: 20px;
 }
 
 .add-account-button .plus {
