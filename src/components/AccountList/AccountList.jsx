@@ -35,7 +35,7 @@ function AccountList(props) {
   return (
     <div className="account-list">
       <Link to={AppRouterPath.CreateAccountForm}>
-        <Button className="add-account-button">Добавить аккаунт</Button>
+        <Button className="add-account-button"><span className="plus">+</span> Добавить аккаунт</Button>
       </Link>
 
       {accounts.length > 0 &&

@@ -10,4 +10,9 @@
 .account-list .add-account-button {
   background-color: var(--tg-theme-secondary-bg-color);
   color: var(--tg-theme-accent-text-color);
+  border: 1px solid var(--tg-theme-accent-text-color);
+}
+
+.add-account-button .plus {
+  font-size: 2em;
 }
