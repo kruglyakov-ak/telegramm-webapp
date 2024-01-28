@@ -52,7 +52,7 @@ const AccountPage = () => {
         <Button className="back-button">К списку аккаунтов</Button>
       </Link>
     </div>
-  ) : account ? (
+  ) : (
     <div className="account-page">
       <h1 className="account-page-title">{account?.title}</h1>
 
@@ -62,13 +62,13 @@ const AccountPage = () => {
         <Button className="back-button">К списку аккаунтов</Button>
       </Link>
     </div>
-  ) : (
-    <div className="account-page">
-      <h1>Аккаунт не найден</h1>
-      <Link to={AppRouterPath.Main}>
-        <Button className="back-button">К списку аккаунтов</Button>
-      </Link>
-    </div>
+    // ) : (
+    //   <div className="account-page">
+    //     <h1>Аккаунт не найден</h1>
+    //     <Link to={AppRouterPath.Main}>
+    //       <Button className="back-button">К списку аккаунтов</Button>
+    //     </Link>
+    //   </div>
   );
 };
 
