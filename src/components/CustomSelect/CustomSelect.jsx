@@ -70,9 +70,9 @@ const CustomSelect = ({
           tabIndex={0}
           ref={placeholderRef}
         >
-          {selected?.label || placeholder}
+          {selected?.label}
         </div>
-        {selected && <div className="placeholder-top">{placeholder}</div>}
+        <div className="placeholder-top">{placeholder}</div>
         <div className="arrow" onClick={selectClikHandler}>
           <svg
             onClick={selectClikHandler}

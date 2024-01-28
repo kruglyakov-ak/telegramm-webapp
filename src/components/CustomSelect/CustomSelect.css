@@ -19,6 +19,11 @@
 }
 
 .placeholder {
+  height: fit-content;
+  font-size: 0.8em;
+}
+
+.placeholder-top {
   position: absolute;
   background: var(--tg-theme-bg-color);
   color: var(--tg-theme-button-color);
