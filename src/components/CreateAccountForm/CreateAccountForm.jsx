@@ -160,7 +160,7 @@ const CreateAccountForm = () => {
       <Controller
         name="exchange"
         control={control}
-        rules={{ required: "Choose exchange" }}
+        rules={{ required: "Выберите биржу" }}
         render={() => (
           <div className="input-wrapper">
             <CustomSelect
@@ -177,9 +177,9 @@ const CreateAccountForm = () => {
       />
       <div className="input-wrapper">
         <Input
-          title={"Main API KEY:"}
+          title={"First key:"}
           type="text"
-          placeholder="Main API KEY"
+          placeholder="First key"
           onChange={(e) => setValue("mainApiKey", e.target.value)}
           value={watch("mainApiKey")}
         />
@@ -189,9 +189,9 @@ const CreateAccountForm = () => {
       </div>
       <div className="input-wrapper">
         <Input
-          title={"SECOND API KEY:"}
+          title={"Second key:"}
           type="text"
-          placeholder="SECOND API KEY"
+          placeholder="Second key"
           onChange={(e) => setValue("secondApiKey", e.target.value)}
           value={watch("secondApiKey")}
         />
