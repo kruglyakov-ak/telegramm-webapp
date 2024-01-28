@@ -5,7 +5,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   background-color: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
@@ -14,6 +13,10 @@ body {
     "Segoe UI", Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
     min-height: 100dvh;
+}
+
+#root {
+  height: 100%;
 }
 
 .app {
