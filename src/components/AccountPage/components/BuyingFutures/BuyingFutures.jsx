@@ -23,8 +23,11 @@ const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
     required: "Введите сумму",
     validate: (val) => {
       if (!Number.isInteger(val) && val <= 0) {
+        console.log(val);
         return "Введите правильную сумму";
       }
+      console.log('PASSED', val);
+
     },
   });
 
