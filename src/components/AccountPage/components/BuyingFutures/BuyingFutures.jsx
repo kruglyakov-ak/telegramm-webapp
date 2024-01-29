@@ -101,13 +101,13 @@ const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
             onChange={(e) => setValue("amount", e.target.value)}
             value={watch("amount")}
           />
+          <Button type="button" className="all-amount-button">
+            На всю сумму USDT
+          </Button>
           {errors.amount && (
             <span className={"error"}>{errors.amount.message}</span>
           )}
         </div>
-        <Button type="button" className="all-amount-button">
-          На всю сумму USDT
-        </Button>
       </div>
       <Button type="submit">Потвердить</Button>
     </form>
