@@ -18,7 +18,7 @@ const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
     formState: { errors },
   } = useForm();
   const [selectedOption, setSelectionOption] = React.useState(null);
-
+  // const [fetchError, setFetchError] = React.useState(null);
   register("amount", {
     required: "Введите сумму",
     valueAsNumber: "Введите число",
@@ -28,24 +28,27 @@ const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
     setSelectionOption(
       currencyOptions.find((option) => option.value === value) || null
     );
-    setValue("futures", value);
-    setError("futures", undefined);
+    setValue("instrument_title", value);
+    setError("instrument_title", undefined);
   };
 
   const buyFutures = async (data) => {
     try {
       if (tg.initData && account_id) {
-        await fetch(`https://transfer.meraquant.com/accounts/${account_id}/buy`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: tg.initData,
-          },
-          body: JSON.stringify({
-            instrument_title: data.instrument_title,
-            amount: data.amount,
-          }),
-        });
+        await fetch(
+          `https://transfer.meraquant.com/accounts/${account_id}/buy`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: tg.initData,
+            },
+            body: JSON.stringify({
+              instrument_title: data.instrument_title,
+              amount: data.amount,
+            }),
+          }
+        );
       }
     } catch (error) {
       console.log(error);
@@ -64,7 +67,7 @@ const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
       <Controller
         name="instrument_title"
         control={control}
-        rules={{ required: "Выберите биржу" }}
+        rules={{ required: "Выберите фьючерс" }}
         render={() => (
           <div className="input-wrapper">
             <CustomSelect
@@ -93,7 +96,9 @@ const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
             <span className={"error"}>{errors.amount.message}</span>
           )}
         </div>
-        <Button type="button" className="all-amount-button">На всю сумму USDT</Button>
+        <Button type="button" className="all-amount-button">
+          На всю сумму USDT
+        </Button>
       </div>
       <Button type="submit">Потвердить</Button>
     </form>
