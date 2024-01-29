@@ -22,10 +22,7 @@ const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
   register("amount", {
     required: "Введите сумму",
     validate: (val) => {
-      if (
-        typeof val !== "number" &&
-        val <= 0
-      ) {
+      if (!Number.isInteger(val) && val <= 0) {
         return "Введите правильную сумму";
       }
     },
