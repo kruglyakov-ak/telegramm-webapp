@@ -21,7 +21,16 @@ const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
   // const [fetchError, setFetchError] = React.useState(null);
   register("amount", {
     required: "Введите сумму",
-    valueAsNumber: "Введите число",
+    validate: (val) => {
+      if (
+        (typeof val !== "number" ||
+          !Number.isInteger(val) ||
+          !Number.isNaN(val)) &&
+        val <= 0
+      ) {
+        return "Введите правильную сумму";
+      }
+    },
   });
 
   const currencySelectChangeHandler = (value) => {
