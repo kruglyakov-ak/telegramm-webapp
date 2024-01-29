@@ -55,6 +55,7 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
       console.log(error);
       if (error.req) {
         console.log(error.req);
+        setFetchError(error.req);
       }
     }
   };
@@ -105,6 +106,7 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
         </div>
       </div>
       <Button type="submit">Потвердить</Button>
+      <span className={"error"}>{fetchError}</span>
     </form>
   );
 };
