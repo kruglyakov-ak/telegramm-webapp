@@ -18,7 +18,7 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
     formState: { errors },
   } = useForm();
   const [selectedOption, setSelectionOption] = React.useState(null);
-  // const [fetchError, setFetchError] = React.useState(null);
+  const [fetchError, setFetchError] = React.useState(null);
   register("amount", {
     required: "Введите сумму",
     validate: (val) => {
@@ -39,23 +39,23 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
   const buyFutures = async (data) => {
     try {
       if (tg.initData && id) {
-        await fetch(
-          `https://transfer.meraquant.com/accounts/${id}/buy`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: tg.initData,
-            },
-            body: JSON.stringify({
-              instrument_title: data.instrument_title,
-              amount: data.amount,
-            }),
-          }
-        );
+        await fetch(`https://transfer.meraquant.com/accounts/${id}/buy`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: tg.initData,
+          },
+          body: JSON.stringify({
+            instrument_title: data.instrument_title,
+            amount: data.amount,
+          }),
+        });
       }
     } catch (error) {
       console.log(error);
+      if (error.req) {
+        console.log(error.req);
+      }
     }
   };
 
