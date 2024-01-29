@@ -22,12 +22,14 @@ const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
   register("amount", {
     required: "Введите сумму",
     validate: (val) => {
-      if (!Number.isInteger(val) && val <= 0) {
-        console.log(val);
+      if (
+        typeof val !== "number" ||
+        !Number.isInteger(val) ||
+        !Number.isNaN(val) ||
+        val <= 0
+      ) {
         return "Введите правильную сумму";
       }
-      console.log('PASSED', val);
-
     },
   });
 
