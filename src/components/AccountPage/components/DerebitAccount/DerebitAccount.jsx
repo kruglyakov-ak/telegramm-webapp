@@ -3,8 +3,7 @@ import BuyingFutures from "../BuyingFutures/BuyingFutures";
 import "./DerebitAccount.css";
 
 const options = [
-  { value: "ETH", label: "ETH" },
-  { value: "BTC", label: "BTC" },
+  { value: "BTCUSD_PERP", label: "BTCUSD_PERP" },
 ];
 
 const DerebitAccount = () => {

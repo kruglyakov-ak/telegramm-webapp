@@ -2,38 +2,101 @@ import React from "react";
 import CustomSelect from "../../../CustomSelect/CustomSelect";
 import Input from "../../../Input/Input";
 import Button from "../../../Button/Button";
+import { useTelegram } from "../../../../hooks/useTelegram";
+import { useForm, Controller } from "react-hook-form";
 import "./BuyingFutures.css";
 
-const BuyingFutures = ({ currencyOptions = [] }) => {
+const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
+  const { tg } = useTelegram();
+  const {
+    register,
+    control,
+    handleSubmit,
+    setValue,
+    setError,
+    watch,
+    formState: { errors },
+  } = useForm();
   const [selectedOption, setSelectionOption] = React.useState(null);
-  const [amount, setAmount] = React.useState("");
+
+  register("amount", {
+    required: "Введите сумму",
+    valueAsNumber: "Введите число",
+  });
 
   const currencySelectChangeHandler = (value) => {
     setSelectionOption(
       currencyOptions.find((option) => option.value === value) || null
     );
+    setValue("futures", value);
+    setError("futures", undefined);
   };
+
+  const buyFutures = async (data) => {
+    try {
+      if (tg.initData && account_id) {
+        await fetch(`https://transfer.meraquant.com/accounts/${account_id}/buy`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: tg.initData,
+          },
+          body: JSON.stringify({
+            instrument_title: data.instrument_title,
+            amount: data.amount,
+          }),
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onSubmit = ({ amount, instrument_title }) => {
+    buyFutures({
+      amount,
+      instrument_title,
+    });
+  };
+
   return (
-    <div className="actions-block">
-      <CustomSelect
-        placeholder={"Выбор фьючерса"}
-        options={currencyOptions}
-        selected={selectedOption}
-        onChange={currencySelectChangeHandler}
+    <form className="actions-block" onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        name="instrument_title"
+        control={control}
+        rules={{ required: "Выберите биржу" }}
+        render={() => (
+          <div className="input-wrapper">
+            <CustomSelect
+              placeholder={"Выбор фьючерса"}
+              options={currencyOptions}
+              selected={selectedOption}
+              onChange={currencySelectChangeHandler}
+            />
+            {errors.instrument_title && (
+              <span className={"error"}>{errors.instrument_title.message}</span>
+            )}
+          </div>
+        )}
       />
       <div className="amount-wrapper">
-        <Input
-          title={"Сумма в USDT:"}
-          type="text"
-          placeholder="Сумма в USDT"
-          value={amount}
-          className="amount-input"
-          onChange={(e) => setAmount(e.target.value)}
-        />
-        <Button className="all-amount-button">На всю сумму USDT</Button>
+        <div className="input-wrapper">
+          <Input
+            title={"Сумма в USDT:"}
+            type="text"
+            placeholder="Сумма в USDT"
+            className="amount-input"
+            onChange={(e) => setValue("amount", e.target.value)}
+            value={watch("amount")}
+          />
+          {errors.amount && (
+            <span className={"error"}>{errors.amount.message}</span>
+          )}
+        </div>
+        <Button type="button" className="all-amount-button">На всю сумму USDT</Button>
       </div>
-      <Button>Потвердить</Button>
-    </div>
+      <Button type="submit">Потвердить</Button>
+    </form>
   );
 };
 
