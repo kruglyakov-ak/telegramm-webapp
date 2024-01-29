@@ -3,7 +3,7 @@ import { useTelegram } from "../../../../hooks/useTelegram";
 import BuyingFutures from "../BuyingFutures/BuyingFutures";
 import "./DerebitAccount.css";
 
-const DerebitAccount = () => {
+const DerebitAccount = ({ id }) => {
   const { tg } = useTelegram();
   const [buyingOptions, setBuyingOptions] = React.useState([]);
 
@@ -43,7 +43,7 @@ const DerebitAccount = () => {
       <div className="account-info"></div>
 
       <div className="actions-title">Покупка фьючерса</div>
-      <BuyingFutures currencyOptions={buyingOptions} />
+      <BuyingFutures id={id} currencyOptions={buyingOptions} />
     </div>
   );
 };

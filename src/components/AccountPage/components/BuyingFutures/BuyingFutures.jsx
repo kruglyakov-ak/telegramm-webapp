@@ -6,7 +6,7 @@ import { useTelegram } from "../../../../hooks/useTelegram";
 import { useForm, Controller } from "react-hook-form";
 import "./BuyingFutures.css";
 
-const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
+const BuyingFutures = ({ id, currencyOptions = [] }) => {
   const { tg } = useTelegram();
   const {
     register,
@@ -38,9 +38,9 @@ const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
 
   const buyFutures = async (data) => {
     try {
-      if (tg.initData && account_id) {
+      if (tg.initData && id) {
         await fetch(
-          `https://transfer.meraquant.com/accounts/${account_id}/buy`,
+          `https://transfer.meraquant.com/accounts/${id}/buy`,
           {
             method: "POST",
             headers: {

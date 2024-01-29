@@ -56,7 +56,7 @@ const AccountPage = () => {
     <div className="account-page">
       <h1 className="account-page-title">{account?.title}</h1>
 
-      {isBinance ? <BinanceAccount /> : <DerebitAccount />}
+      {isBinance ? <BinanceAccount /> : <DerebitAccount id={id} />}
 
       <Link to={AppRouterPath.Main}>
         <Button className="back-button">К списку аккаунтов</Button>
