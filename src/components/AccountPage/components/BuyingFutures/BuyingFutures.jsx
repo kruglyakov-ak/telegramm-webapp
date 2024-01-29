@@ -52,10 +52,8 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
         });
       }
     } catch (error) {
-      console.log(error);
-      if (error.req) {
-        console.log(error.req);
-        setFetchError(error.req);
+      if (error && "message" in error) {
+        setFetchError(error.response.data.message || error.message);
       }
     }
   };
