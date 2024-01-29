@@ -24,8 +24,6 @@ const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
     validate: (val) => {
       if (
         typeof val !== "number" &&
-        !Number.isInteger(val) &&
-        Number.isNaN(val) &&
         val <= 0
       ) {
         return "Введите правильную сумму";
