@@ -22,10 +22,7 @@ const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
   register("amount", {
     required: "Введите сумму",
     validate: (val) => {
-      if (
-        isNaN(val) ||
-        val <= 0
-      ) {
+      if (isNaN(Number(val)) || Number(val) <= 0) {
         return "Введите правильную сумму";
       }
     },
@@ -96,7 +93,7 @@ const BuyingFutures = ({ account_id, currencyOptions = [] }) => {
             type="text"
             placeholder="Сумма в USDT"
             className="amount-input"
-            onChange={(e) => setValue("amount", Number(e.target.value))}
+            onChange={(e) => setValue("amount", e.target.value)}
             value={watch("amount")}
           />
           <Button type="button" className="all-amount-button">
