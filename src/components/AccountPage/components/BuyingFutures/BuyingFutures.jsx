@@ -59,7 +59,7 @@ const BuyingFutures = ({ id, currencyOptions = [], maxUSDT, buyCallback }) => {
         const response = await res.json();
         if (response.status === "error" && "status" in response) {
           tg.showPopup({
-            title: "Ошибка при покупке фьючерса",
+            title: "Ошибка",
             message: response.message,
             buttons: [{ text: "Закрыть", type: "close" }],
           });
