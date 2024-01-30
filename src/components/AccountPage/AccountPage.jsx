@@ -66,9 +66,6 @@ const AccountPage = () => {
       <div className="account-info">
         {account?.assets.map(
           ({ base_currency, instrument_title, equity }, index) => {
-            {/* if (instrument_title === "USDT") {
-              setMaxUSDT(equity);
-            } */}
 
             return (
               <div key={index} className="account-info-row">
