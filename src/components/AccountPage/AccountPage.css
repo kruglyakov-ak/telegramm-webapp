@@ -5,14 +5,10 @@
   height: 100%;
   width: 100%;
   padding-top: 40px;
-  position: relative;
 }
 
 .reload-button {
-  position: absolute;
-  right: -8px;
-  top: -10px;
-  width: 90px;
+  width: 100%;
   font-size: 0.8em;
 }
 

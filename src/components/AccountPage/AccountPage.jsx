@@ -73,16 +73,13 @@ const AccountPage = () => {
       <h1 className="account-page-title">
         {account?.title} {account?.market}
       </h1>
-
+      <div className="account-info">
       <Button className="reload-button" onClick={getAccount}>
         Обновить
       </Button>
-
-      <div className="account-info">
+      
         {isAssetsLoading ? (
-          <h1 className="account-page-title">
-            {account?.title} {account?.market}
-          </h1>
+          <h1 className="account-page-loading">Загрузка...</h1>
         ) : (
           account?.assets.map(
             ({ base_currency, instrument_title, equity }, index) => {
