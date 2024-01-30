@@ -38,6 +38,8 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
 
   const buyFutures = async (data) => {
     try {
+    console.log(tg.initData, id);
+
       if (tg.initData && id) {
         const res = await fetch(
           `https://transfer.meraquant.com/accounts/${id}/buy`,
@@ -70,7 +72,6 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
   };
 
   const onSubmit = ({ amount, instrument_title }) => {
-    console.log({ amount, instrument_title });
     buyFutures({
       amount,
       instrument_title,
