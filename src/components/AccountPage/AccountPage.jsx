@@ -11,6 +11,8 @@ const AccountPage = () => {
   const { tg } = useTelegram();
   const { id } = useLoaderData();
   const [isLoading, setIsLoading] = React.useState(true);
+  const [isAssetsLoading, setIsAssetsLoading] = React.useState(true);
+
   const [account, setAccount] = React.useState(null);
   const [isBinance, setIsBinance] = React.useState(true);
   const [fetchError, setFetchError] = React.useState(null);
@@ -18,7 +20,7 @@ const AccountPage = () => {
 
   const getAccount = useCallback(async () => {
     try {
-      setIsLoading(true);
+      setIsAssetsLoading(true);
       if (tg?.initData) {
         const res = await fetch(
           `https://transfer.meraquant.com/accounts/${id}`,
@@ -37,9 +39,11 @@ const AccountPage = () => {
         } else if ("status" in resData && resData.status === "error") {
           setFetchError(resData.message);
         }
+        setIsAssetsLoading(false);
         setIsLoading(false);
       }
     } catch (error) {
+      setIsAssetsLoading(false);
       setIsLoading(false);
       console.log(error);
     }
@@ -75,47 +79,53 @@ const AccountPage = () => {
       </Button>
 
       <div className="account-info">
-        {account?.assets.map(
-          ({ base_currency, instrument_title, equity }, index) => {
-            let equityValue = equity;
-            let equityCurrency = base_currency;
+        {isAssetsLoading ? (
+          <h1 className="account-page-title">
+            {account?.title} {account?.market}
+          </h1>
+        ) : (
+          account?.assets.map(
+            ({ base_currency, instrument_title, equity }, index) => {
+              let equityValue = equity;
+              let equityCurrency = base_currency;
 
-            if (base_currency.includes("BTC")) {
-              equityValue = Number(equity).toFixed(8);
-            }
+              if (base_currency.includes("BTC")) {
+                equityValue = Number(equity).toFixed(8);
+              }
 
-            if (base_currency.includes("USDT")) {
-              equityValue = Number(equity).toFixed(2);
-              equityCurrency = "$";
-            }
+              if (base_currency.includes("USDT")) {
+                equityValue = Number(equity).toFixed(2);
+                equityCurrency = "$";
+              }
 
-            if (base_currency.includes("ETH")) {
-              equityValue = Number(equity).toFixed(4);
-            }
+              if (base_currency.includes("ETH")) {
+                equityValue = Number(equity).toFixed(4);
+              }
 
-            if (base_currency.includes("ADA")) {
-              equityValue = Number(equity).toFixed(4);
-            }
+              if (base_currency.includes("ADA")) {
+                equityValue = Number(equity).toFixed(4);
+              }
 
-            if (
-              instrument_title.includes("-") ||
-              instrument_title.includes("_")
-            ) {
-              equityValue = Number(equity).toFixed(2);
-              equityCurrency = "$";
-            }
+              if (
+                instrument_title.includes("-") ||
+                instrument_title.includes("_")
+              ) {
+                equityValue = Number(equity).toFixed(2);
+                equityCurrency = "$";
+              }
 
-            return (
-              <div key={index} className="account-info-row">
-                <div>{instrument_title}</div>
+              return (
+                <div key={index} className="account-info-row">
+                  <div>{instrument_title}</div>
 
-                <div className="equity">
-                  <div>{equityValue}</div>
-                  <div>{equityCurrency}</div>
+                  <div className="equity">
+                    <div>{equityValue}</div>
+                    <div>{equityCurrency}</div>
+                  </div>
                 </div>
-              </div>
-            );
-          }
+              );
+            }
+          )
         )}
       </div>
 
