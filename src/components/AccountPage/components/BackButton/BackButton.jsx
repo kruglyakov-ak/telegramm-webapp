@@ -1,6 +1,6 @@
 import React from "react";
-import Link from "../../Link/Link";
-import Button from "../../Button/Button";
+import Link from "../../../Link/Link";
+import Button from "../../../Button/Button";
 import { AppRouterPath } from "../../../../constants";
 import "./BackButton.css";
 
