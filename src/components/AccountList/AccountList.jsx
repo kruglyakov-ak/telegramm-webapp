@@ -45,11 +45,21 @@ function AccountList(props) {
           <Link key={account.id} to={AppRouterPath.Account(account.id)}>
             <Button key={account}>
               {account.title}
-              {account.market === "binance" ? (
-                <img className="exchange-logo" src="/images/binance-logo.svg" alt="Binance" />
-              ) : (
-                <img className="exchange-logo" src="/images/deribit-logo.svg" alt="Deribit" />
-              )}
+              <div className="exchange-logo-wrapper">
+                {account.market === "binance" ? (
+                  <img
+                    className="exchange-logo"
+                    src="/images/binance-logo.svg"
+                    alt="Binance"
+                  />
+                ) : (
+                  <img
+                    className="exchange-logo"
+                    src="/images/deribit-logo.svg"
+                    alt="Deribit"
+                  />
+                )}
+              </div>
             </Button>
           </Link>
         ))}
