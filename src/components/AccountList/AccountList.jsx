@@ -57,6 +57,7 @@ function AccountList(props) {
                     className="exchange-logo"
                     src="/images/deribit-logo.svg"
                     alt="Deribit"
+                    style={{ marginLeft: "2px" }}
                   />
                 )}
               </div>
