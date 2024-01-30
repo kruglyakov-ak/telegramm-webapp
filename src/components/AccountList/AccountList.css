@@ -17,3 +17,8 @@
 .add-account-button .plus {
   font-size: 2em;
 }
+
+.account-list .exchange-logo {
+  width: 26px;
+  height: 26px;
+}

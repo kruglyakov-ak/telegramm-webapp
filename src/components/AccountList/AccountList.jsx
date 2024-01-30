@@ -35,13 +35,22 @@ function AccountList(props) {
   return (
     <div className="account-list">
       <Link to={AppRouterPath.CreateAccountForm}>
-        <Button className="add-account-button"><span className="plus">+</span> Добавить аккаунт</Button>
+        <Button className="add-account-button">
+          <span className="plus">+</span> Добавить аккаунт
+        </Button>
       </Link>
 
       {accounts.length > 0 &&
         accounts.map((account) => (
           <Link key={account.id} to={AppRouterPath.Account(account.id)}>
-            <Button key={account}>{account.title}</Button>
+            <Button key={account}>
+              {account.title}
+              {account.market === "binance" ? (
+                <img className="exchange-logo" src="/images/binance-logo.svg" alt="Binance" />
+              ) : (
+                <img className="exchange-logo" src="/images/deribit-logo.svg" alt="Deribit" />
+              )}
+            </Button>
           </Link>
         ))}
     </div>
