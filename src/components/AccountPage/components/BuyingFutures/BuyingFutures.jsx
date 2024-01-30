@@ -22,7 +22,7 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
   register("amount", {
     required: "Введите сумму",
     validate: (val) => {
-      if (isNaN(Number(val)) || Number(val) <= 0) {
+      if (isNaN(Number(val))) {
         return "Введите правильную сумму";
       }
     },
