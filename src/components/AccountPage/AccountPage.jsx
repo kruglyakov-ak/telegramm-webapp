@@ -59,6 +59,7 @@ const AccountPage = () => {
   ) : (
     <div className="account-page">
       <h1 className="account-page-error">Ошибка API ключей</h1>
+      <BinanceAccount />
       <BackButton />
     </div>
   );
