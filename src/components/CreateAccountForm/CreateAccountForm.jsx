@@ -30,7 +30,7 @@ const CreateAccountForm = () => {
   const postNewAccount = async (data) => {
     try {
       if (tg.initData) {
-        await fetch("https://transfer.meraquant.com/accounts/", {
+        const res = await fetch("https://transfer.meraquant.com/accounts/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -44,10 +44,36 @@ const CreateAccountForm = () => {
           }),
         });
 
-        tg.showAlert("Аккаунт успешно создан", navigate(AppRouterPath.Main));
+        const resData = await res.json();
+
+        if ("status" in resData) {
+          if (resData.status === "error") {
+            tg.showPopup({
+              title: "Ошибка",
+              message: resData.message,
+              buttons: [{ text: "Закрыть", type: "close" }],
+            });
+          } else if (resData.status === "success") {
+            tg.showPopup(
+              {
+                title: "Создание аккаунта",
+                message: resData.message,
+                buttons: [{ text: "Закрыть", type: "close" }],
+              },
+              navigate(AppRouterPath.Main)
+            );
+          }
+        }
       }
     } catch (error) {
       console.log(error);
+      if (error && "message" in error) {
+        tg.showPopup({
+          title: "Ошибка",
+          message: error.response.data.message || error.message,
+          buttons: [{ text: "Закрыть", type: "close" }],
+        });
+      }
     }
   };
 
@@ -145,7 +171,7 @@ const CreateAccountForm = () => {
   return (
     <form className="create-account-form" onSubmit={handleSubmit(onSubmit)}>
       <h1>Создание аккаунта</h1>
-      
+
       <div className="input-wrapper">
         <Input
           title={"Название аккаунта:"}
