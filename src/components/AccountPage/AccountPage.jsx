@@ -34,8 +34,9 @@ const AccountPage = () => {
         } else if ("status" in resData && resData.status === "error") {
           if (resData.message.includes("invalid_credentials")) {
             setFetchError("Ошибка API ключей");
+          } else {
+            setFetchError(resData.message);
           }
-          setFetchError(resData.message);
         }
         setIsLoading(false);
       }
