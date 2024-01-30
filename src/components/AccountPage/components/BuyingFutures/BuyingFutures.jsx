@@ -69,7 +69,7 @@ const BuyingFutures = ({  currencyOptions = [], maxUSDT }) => {
   // };
 
   const onSubmit = ({ amount, instrument_title }) => {
-  tg.showPopup({title: 'Вы уверены?', text: 'Вы уверены, что хотите купить фьючерс?', buttons: [
+  tg.showPopup({title: 'Вы уверены?', message: 'Вы уверены, что хотите купить фьючерс?', buttons: [
     {
       id: 0,
       type: 'ok',
