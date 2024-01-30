@@ -52,7 +52,6 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
         });
 
         const response = await res.json()
-        console.log(response)
         if (response.status === 'error' && "status" in response) {
           setFetchError(response.message);
         }
