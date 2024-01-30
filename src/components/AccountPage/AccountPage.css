@@ -10,8 +10,8 @@
 
 .reload-button {
   position: absolute;
-  right: 0px;
-  top: 0px;
+  right: -8px;
+  top: -10px;
   width: 90px;
   font-size: 0.8em;
 }
