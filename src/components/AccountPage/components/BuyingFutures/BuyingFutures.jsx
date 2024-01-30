@@ -6,7 +6,7 @@ import { useTelegram } from "../../../../hooks/useTelegram";
 import { useForm, Controller } from "react-hook-form";
 import "./BuyingFutures.css";
 
-const BuyingFutures = ({ id, currencyOptions = [], maxUSDT }) => {
+const BuyingFutures = ({ id, currencyOptions = [], maxUSDT, buyCallback }) => {
   const { tg } = useTelegram();
   const {
     register,
@@ -65,7 +65,9 @@ const BuyingFutures = ({ id, currencyOptions = [], maxUSDT }) => {
             buttons: [{ text: "Закрыть", type: "close" }],
           });
 
-          reset();
+          reset({ amount: '', instrument_title: null });
+          setSelectionOption(null)
+          buyCallback();
         }
       }
     } catch (error) {

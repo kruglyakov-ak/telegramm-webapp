@@ -18,7 +18,7 @@ const AccountPage = () => {
   const [fetchError, setFetchError] = React.useState(null);
   const [maxUSDT, setMaxUSDT] = React.useState(0);
 
-  const getAccount = useCallback(async () => {
+  const getAccount = useCallback(async (id) => {
     try {
       setIsAssetsLoading(true);
       if (tg?.initData) {
@@ -47,11 +47,11 @@ const AccountPage = () => {
       setIsLoading(false);
       console.log(error);
     }
-  }, [tg, id]);
+  }, [tg]);
 
   useEffect(() => {
-    getAccount();
-  }, [getAccount, tg]);
+    getAccount(id);
+  }, [getAccount, id, tg]);
 
   useEffect(() => {
     if (account) {
@@ -121,7 +121,7 @@ const AccountPage = () => {
           )
         )}
 
-        <Button className="reload-button" onClick={getAccount}>
+        <Button className="reload-button" onClick={() => getAccount(id)}>
         Обновить
       </Button>
       </div>
@@ -129,7 +129,7 @@ const AccountPage = () => {
       {isBinance ? (
         <BinanceAccount id={id} maxUSDT={maxUSDT} />
       ) : (
-        <DerebitAccount id={id} maxUSDT={maxUSDT} />
+        <DerebitAccount buyCallback={() => getAccount(id)} id={id} maxUSDT={maxUSDT} />
       )}
 
       <BackButton />
