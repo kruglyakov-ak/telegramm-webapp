@@ -12,6 +12,7 @@ const AccountPage = () => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [account, setAccount] = React.useState(null);
   const [isBinance, setIsBinance] = React.useState(true);
+  const [fetchError, setFetchError] = React.useState(null);
 
   const getAccount = useCallback(async () => {
     try {
@@ -27,9 +28,15 @@ const AccountPage = () => {
           }
         );
         const resData = await res.json();
-
-        setAccount(resData.data);
-        setIsBinance(resData.data.market === "binance");
+        if ("data" in resData) {
+          setAccount(resData.data);
+          setIsBinance(resData.data.market === "binance");
+        } else if ("status" in resData && resData.status === "error") {
+          if (resData.message.includes("invalid_credentials")) {
+            setFetchError("Ошибка API ключей");
+          }
+          setFetchError(resData.message);
+        }
         setIsLoading(false);
       }
     } catch (error) {
@@ -58,7 +65,7 @@ const AccountPage = () => {
     </div>
   ) : (
     <div className="account-page">
-      <h1 className="account-page-error">Ошибка API ключей</h1>
+      <h1 className="account-page-error">{fetchError}</h1>
       <BinanceAccount />
       <BackButton />
     </div>
