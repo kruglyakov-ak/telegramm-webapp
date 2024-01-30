@@ -8,6 +8,7 @@ import "./BuyingFutures.css";
 
 const BuyingFutures = ({ id, currencyOptions = [], maxUSDT, buyCallback }) => {
   const { tg } = useTelegram();
+  const [isLoading, setIsLoading] = React.useState(false);
   const {
     register,
     control,
@@ -39,6 +40,7 @@ const BuyingFutures = ({ id, currencyOptions = [], maxUSDT, buyCallback }) => {
 
   const buyFutures = async (data) => {
     try {
+      setIsLoading(true);
       if (tg.initData && id) {
         const res = await fetch(
           `https://transfer.meraquant.com/accounts/${id}/buy`,
@@ -65,16 +67,19 @@ const BuyingFutures = ({ id, currencyOptions = [], maxUSDT, buyCallback }) => {
             buttons: [{ text: "Закрыть", type: "close" }],
           });
 
-          reset({ amount: '', instrument_title: null });
-          setSelectionOption(null)
+          reset({ amount: "", instrument_title: null });
+          setSelectionOption(null);
           buyCallback();
         }
+
+        setIsLoading(false);
       }
     } catch (error) {
       console.log(error);
       if (error && "message" in error) {
         setFetchError(error.response.data.message || error.message);
       }
+      setIsLoading(false);
     }
   };
 
@@ -128,7 +133,9 @@ const BuyingFutures = ({ id, currencyOptions = [], maxUSDT, buyCallback }) => {
         </div>
       </div>
       <div className="input-wrapper">
-        <Button type="submit">Потвердить</Button>
+        <Button type="submit">
+          {isLoading ? "Загрузка..." : "Потвердить"}
+        </Button>
         <span className={"error"}>{fetchError}</span>
       </div>
     </form>
