@@ -66,13 +66,34 @@ const AccountPage = () => {
       <div className="account-info">
         {account?.assets.map(
           ({ base_currency, instrument_title, equity }, index) => {
+            let equityValue = equity;
+            let equityCurrency = base_currency;
+
+            if (base_currency.includes('BTC')) {
+              equityValue = equity.toFixed(8);
+            }
+
+            if (base_currency.includes('USDT')) {
+              equityValue = equity.toFixed(2);
+              equityCurrency = '$';
+            }
+
+            if (base_currency.includes('ETH')) {
+              equityValue = equity.toFixed(4);
+            }
+
+
+            if (base_currency.includes('ADA')) {
+              equityValue = equity.toFixed(4);
+            }
+
             return (
               <div key={index} className="account-info-row">
                 <div>{instrument_title}</div>
 
                 <div className="equity">
-                  <div>{equity}</div>
-                  <div>{base_currency}</div>
+                  <div>{equityValue}</div>
+                  <div>{equityCurrency}</div>
                 </div>
               </div>
             );
