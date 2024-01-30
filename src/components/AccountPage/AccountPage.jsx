@@ -13,6 +13,7 @@ const AccountPage = () => {
   const [account, setAccount] = React.useState(null);
   const [isBinance, setIsBinance] = React.useState(true);
   const [fetchError, setFetchError] = React.useState(null);
+  const [maxUSDT, setMaxUSDT] = React.useState(0);
 
   const getAccount = useCallback(async () => {
     try {
@@ -58,16 +59,38 @@ const AccountPage = () => {
     </div>
   ) : account ? (
     <div className="account-page">
-      <h1 className="account-page-title">{account?.title}</h1>
+      <h1 className="account-page-title">
+        {account?.title} {account?.market}
+      </h1>
 
-      {isBinance ? <BinanceAccount id={id} /> : <DerebitAccount id={id} />}
+      <div className="account-info">
+        {account?.assets.map(({ base_currency, instrument_title, equity }) => {
+          if (instrument_title === "USDT") {
+            setMaxUSDT(equity);
+          }
+
+          return (
+            <div className="account-info-row">
+              <div>{instrument_title}</div>
+              <div>{base_currency}</div>
+              <div>{equity}</div>
+            </div>
+          );
+        })}
+      </div>
+
+      {isBinance ? (
+        <BinanceAccount id={id} maxUSDT={maxUSDT} />
+      ) : (
+        <DerebitAccount id={id} maxUSDT={maxUSDT} />
+      )}
 
       <BackButton />
     </div>
   ) : (
     <div className="account-page">
       <h1 className="account-page-error">{fetchError}</h1>
-      <BinanceAccount id={id} />
+      <BinanceAccount id={id} maxUSDT={maxUSDT} />
       <BackButton />
     </div>
   );

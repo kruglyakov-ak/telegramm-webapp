@@ -5,7 +5,7 @@ import Button from "../../../Button/Button";
 import { useTelegram } from "../../../../hooks/useTelegram";
 import "./BinanceAccount.css";
 
-const BinanceAccount = ({id}) => {
+const BinanceAccount = ({id, maxUSDT}) => {
   const { tg } = useTelegram();
   const [buyingOptions, setBuyingOptions] = React.useState([]);
   const [actionMode, setActionMode] = React.useState("buy");
@@ -44,7 +44,7 @@ const BinanceAccount = ({id}) => {
   const getActionElement = (mode) => {
     switch (mode) {
       case "buy":
-        return <BuyingFutures id={id} currencyOptions={buyingOptions} />;
+        return <BuyingFutures maxUSDT={maxUSDT} id={id} currencyOptions={buyingOptions} />;
       case "change":
         return <ChangeFutures />;
       default:
@@ -53,8 +53,6 @@ const BinanceAccount = ({id}) => {
   };
   return (
     <div className="binance-account">
-      <div className="account-info"></div>
-
       <div className="actions-button">
         <Button
           className={actionMode !== "buy" && "back-button"}

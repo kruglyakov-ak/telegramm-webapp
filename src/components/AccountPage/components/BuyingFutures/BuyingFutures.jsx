@@ -6,7 +6,7 @@ import { useTelegram } from "../../../../hooks/useTelegram";
 import { useForm, Controller } from "react-hook-form";
 import "./BuyingFutures.css";
 
-const BuyingFutures = ({ id, currencyOptions = [] }) => {
+const BuyingFutures = ({ id, currencyOptions = [], maxUSDT }) => {
   const { tg } = useTelegram();
   const {
     register,
@@ -104,7 +104,11 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
             onChange={(e) => setValue("amount", e.target.value)}
             value={watch("amount")}
           />
-          <Button type="button" className="all-amount-button">
+          <Button
+            onClick={() => setValue("amount", maxUSDT)}
+            type="button"
+            className="all-amount-button"
+          >
             На всю сумму USDT
           </Button>
           {errors.amount && (
