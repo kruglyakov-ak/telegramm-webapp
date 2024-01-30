@@ -43,13 +43,13 @@ const AccountPage = () => {
           setTimeout(() => {
             setIsAssetsLoading(false);
             setIsLoading(false);
-          }, 1000);
+          }, 500);
         }
       } catch (error) {
         setTimeout(() => {
           setIsAssetsLoading(false);
           setIsLoading(false);
-        }, 1000);
+        }, 500);
         console.log(error);
       }
     },
