@@ -88,6 +88,11 @@ const AccountPage = () => {
               equityValue = Number(equity).toFixed(4);
             }
 
+            if (base_currency.includes("-") || base_currency.includes("_")) {
+              equityValue = Number(equity).toFixed(2);
+              equityCurrency = "$";
+            }
+
             return (
               <div key={index} className="account-info-row">
                 <div>{instrument_title}</div>
