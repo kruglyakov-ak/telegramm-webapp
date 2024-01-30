@@ -13,7 +13,7 @@ const AccountPage = () => {
   const [account, setAccount] = React.useState(null);
   const [isBinance, setIsBinance] = React.useState(true);
   const [fetchError, setFetchError] = React.useState(null);
-  const [maxUSDT, setMaxUSDT] = React.useState(0);
+  const [maxUSDT] = React.useState(0);
 
   const getAccount = useCallback(async () => {
     try {
