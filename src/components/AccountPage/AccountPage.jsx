@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import BinanceAccount from "./components/BinanceAccountPage/BinanceAccount";
 import DerebitAccount from "./components/DerebitAccount/DerebitAccount";
 import BackButton from "./components/BackButton/BackButton";
-import Button from "../../../Button/Button";
+import Button from "../Button/Button";
 import { useTelegram } from "../../hooks/useTelegram";
 import "./AccountPage.css";
 
