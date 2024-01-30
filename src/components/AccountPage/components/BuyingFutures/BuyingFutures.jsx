@@ -39,7 +39,7 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
   const buyFutures = async (data) => {
     try {
       if (tg.initData && id) {
-        await fetch(`https://transfer.meraquant.com/accounts/${id}/buy`, {
+        const res = await fetch(`https://transfer.meraquant.com/accounts/${id}/buy`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -50,6 +50,9 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
             amount: data.amount,
           }),
         });
+
+        const response = await res.json()
+        console.log(response)
       }
     } catch (error) {
       console.log(error.response)
