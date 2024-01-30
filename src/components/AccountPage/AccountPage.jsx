@@ -70,21 +70,21 @@ const AccountPage = () => {
             let equityCurrency = base_currency;
 
             if (base_currency.includes('BTC')) {
-              equityValue = +equity.toFixed(8);
+              equityValue = Number(equity).toFixed(8);
             }
 
             if (base_currency.includes('USDT')) {
-              equityValue = +equity.toFixed(2);
+              equityValue = Number(equity).toFixed(2);
               equityCurrency = '$';
             }
 
             if (base_currency.includes('ETH')) {
-              equityValue = +equity.toFixed(4);
+              equityValue = Number(equity).toFixed(4);
             }
 
 
             if (base_currency.includes('ADA')) {
-              equityValue = +equity.toFixed(4);
+              equityValue = Number(equity).toFixed(4);
             }
 
             return (
