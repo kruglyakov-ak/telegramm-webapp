@@ -60,14 +60,14 @@ const AccountPage = () => {
     <div className="account-page">
       <h1 className="account-page-title">{account?.title}</h1>
 
-      {isBinance ? <BinanceAccount id={id}/> : <DerebitAccount id={id} />}
+      {isBinance ? <BinanceAccount id={id} /> : <DerebitAccount id={id} />}
 
       <BackButton />
     </div>
   ) : (
     <div className="account-page">
       <h1 className="account-page-error">{fetchError}</h1>
-      <BinanceAccount />
+      <BinanceAccount id={id} />
       <BackButton />
     </div>
   );
