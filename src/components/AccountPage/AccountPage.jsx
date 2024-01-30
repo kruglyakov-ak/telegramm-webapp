@@ -33,11 +33,7 @@ const AccountPage = () => {
           setAccount(resData.data);
           setIsBinance(resData.data.market === "binance");
         } else if ("status" in resData && resData.status === "error") {
-          if (resData.message.includes("invalid_credentials")) {
-            setFetchError("Ошибка API ключей");
-          } else {
-            setFetchError(resData.message);
-          }
+          setFetchError(resData.message);
         }
         setIsLoading(false);
       }
@@ -69,21 +65,20 @@ const AccountPage = () => {
             let equityValue = equity;
             let equityCurrency = base_currency;
 
-            if (base_currency.includes('BTC')) {
+            if (base_currency.includes("BTC")) {
               equityValue = Number(equity).toFixed(8);
             }
 
-            if (base_currency.includes('USDT')) {
+            if (base_currency.includes("USDT")) {
               equityValue = Number(equity).toFixed(2);
-              equityCurrency = '$';
+              equityCurrency = "$";
             }
 
-            if (base_currency.includes('ETH')) {
+            if (base_currency.includes("ETH")) {
               equityValue = Number(equity).toFixed(4);
             }
 
-
-            if (base_currency.includes('ADA')) {
+            if (base_currency.includes("ADA")) {
               equityValue = Number(equity).toFixed(4);
             }
 
