@@ -58,6 +58,7 @@ const BuyingFutures = ({ id, currencyOptions = [], maxUSDT }) => {
         if (response.status === "error" && "status" in response) {
           setFetchError(response.message);
         }
+
       }
     } catch (error) {
       console.log(error);
@@ -66,6 +67,7 @@ const BuyingFutures = ({ id, currencyOptions = [], maxUSDT }) => {
       }
     }
   };
+  tg.showAlert()
 
   const onSubmit = ({ amount, instrument_title }) => {
     buyFutures({
