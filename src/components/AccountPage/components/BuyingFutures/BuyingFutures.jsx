@@ -6,7 +6,7 @@ import { useTelegram } from "../../../../hooks/useTelegram";
 import { useForm, Controller } from "react-hook-form";
 import "./BuyingFutures.css";
 
-const BuyingFutures = ({  currencyOptions = [], maxUSDT }) => {
+const BuyingFutures = ({ id, currencyOptions = [], maxUSDT }) => {
   const { tg } = useTelegram();
   const {
     register,
@@ -15,10 +15,11 @@ const BuyingFutures = ({  currencyOptions = [], maxUSDT }) => {
     setValue,
     setError,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
   const [selectedOption, setSelectionOption] = React.useState(null);
-  const [fetchError] = React.useState(null);
+  const [fetchError, setFetchError] = React.useState(null);
   register("amount", {
     required: "Введите сумму",
     validate: (val) => {
@@ -36,54 +37,50 @@ const BuyingFutures = ({  currencyOptions = [], maxUSDT }) => {
     setError("instrument_title", undefined);
   };
 
-  // const buyFutures = async (data) => {
-  //   try {
-  //     if (tg.initData && id) {
-  //       const res = await fetch(
-  //         `https://transfer.meraquant.com/accounts/${id}/buy`,
-  //         {
-  //           method: "POST",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             Authorization: tg.initData,
-  //           },
-  //           body: JSON.stringify({
-  //             instrument_title: data.instrument_title,
-  //             amount: data.amount,
-  //           }),
-  //         }
-  //       );
+  const buyFutures = async (data) => {
+    try {
+      if (tg.initData && id) {
+        const res = await fetch(
+          `https://transfer.meraquant.com/accounts/${id}/buy`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: tg.initData,
+            },
+            body: JSON.stringify({
+              instrument_title: data.instrument_title,
+              amount: data.amount,
+            }),
+          }
+        );
 
-  //       const response = await res.json();
-  //       if (response.status === "error" && "status" in response) {
-  //         setFetchError(response.message);
-  //       }
+        const response = await res.json();
+        if (response.status === "error" && "status" in response) {
+          setFetchError(response.message);
+        } else if (response.status === "success") {
+          tg.showPopup({
+            title: "Покупка фьючерса",
+            message: response.message,
+            buttons: [{ text: "Закрыть", type: "close" }],
+          });
 
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     if (error && "message" in error) {
-  //       setFetchError(error.response.data.message || error.message);
-  //     }
-  //   }
-  // };
+          reset();
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      if (error && "message" in error) {
+        setFetchError(error.response.data.message || error.message);
+      }
+    }
+  };
 
   const onSubmit = ({ amount, instrument_title }) => {
-  tg.showPopup({title: 'Вы уверены?', message: 'Вы уверены, что хотите купить фьючерс?', buttons: [
-    {
-      id: 0,
-      type: 'ok',
-    },
-    {
-      id: 1,
-      type: 'close',
-    }
-  ]})
-
-    // buyFutures({
-    //   amount,
-    //   instrument_title,
-    // });
+    buyFutures({
+      amount,
+      instrument_title,
+    });
   };
 
   return (
