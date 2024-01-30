@@ -1,22 +1,50 @@
 import React from "react";
 import BuyingFutures from "../BuyingFutures/BuyingFutures";
 import ChangeFutures from "../ChangeFutures/ChangeFutures";
-import "./BinanceAccount.css";
 import Button from "../../../Button/Button";
-
-const options = [
-  { value: "ETH", label: "ETH" },
-  { value: "BTC", label: "BTC" },
-  { value: "ADA", label: "ADA" },
-];
+import { useTelegram } from "../../../../hooks/useTelegram";
+import "./BinanceAccount.css";
 
 const BinanceAccount = () => {
+  const { tg } = useTelegram();
+  const [buyingOptions, setBuyingOptions] = React.useState([]);
   const [actionMode, setActionMode] = React.useState("buy");
+
+  const getPossiblePairs = React.useCallback(async () => {
+    try {
+      if (tg?.initData) {
+        const res = await fetch(
+          `https://transfer.meraquant.com/instruments/futures/pairs`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: tg?.initData,
+            },
+          }
+        );
+        const resData = await res.json();
+
+        setBuyingOptions(
+          resData?.data?.binance?.buy.map(({ instrument_to }) => ({
+            value: instrument_to,
+            label: instrument_to,
+          }))
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [tg]);
+
+  React.useEffect(() => {
+    getPossiblePairs();
+  }, [getPossiblePairs, tg]);
 
   const getActionElement = (mode) => {
     switch (mode) {
       case "buy":
-        return <BuyingFutures currencyOptions={options} />;
+        return <BuyingFutures currencyOptions={buyingOptions} />;
       case "change":
         return <ChangeFutures />;
       default:
