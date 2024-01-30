@@ -70,6 +70,7 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
   };
 
   const onSubmit = ({ amount, instrument_title }) => {
+    console.log({ amount, instrument_title });
     buyFutures({
       amount,
       instrument_title,
