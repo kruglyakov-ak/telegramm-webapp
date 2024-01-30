@@ -64,19 +64,21 @@ const AccountPage = () => {
       </h1>
 
       <div className="account-info">
-        {account?.assets.map(({ base_currency, instrument_title, equity }) => {
-          if (instrument_title === "USDT") {
-            setMaxUSDT(equity);
-          }
+        {account?.assets.map(
+          ({ base_currency, instrument_title, equity }, index) => {
+            if (instrument_title === "USDT") {
+              setMaxUSDT(equity);
+            }
 
-          return (
-            <div className="account-info-row">
-              <div>{instrument_title}</div>
-              <div>{base_currency}</div>
-              <div>{equity}</div>
-            </div>
-          );
-        })}
+            return (
+              <div key={index} className="account-info-row">
+                <div>{instrument_title}</div>
+                <div>{base_currency}</div>
+                <div>{equity}</div>
+              </div>
+            );
+          }
+        )}
       </div>
 
       {isBinance ? (
