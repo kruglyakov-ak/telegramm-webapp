@@ -39,25 +39,28 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
   const buyFutures = async (data) => {
     try {
       if (tg.initData && id) {
-        const res = await fetch(`https://transfer.meraquant.com/accounts/${id}/buy`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: tg.initData,
-          },
-          body: JSON.stringify({
-            instrument_title: data.instrument_title,
-            amount: data.amount,
-          }),
-        });
+        const res = await fetch(
+          `https://transfer.meraquant.com/accounts/${id}/buy`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: tg.initData,
+            },
+            body: JSON.stringify({
+              instrument_title: data.instrument_title,
+              amount: data.amount,
+            }),
+          }
+        );
 
-        const response = await res.json()
-        if (response.status === 'error' && "status" in response) {
+        const response = await res.json();
+        if (response.status === "error" && "status" in response) {
           setFetchError(response.message);
         }
       }
     } catch (error) {
-      console.log(error.response)
+      console.log(error.response);
       if (error && "message" in error) {
         setFetchError(error.response.data.message || error.message);
       }
@@ -109,8 +112,10 @@ const BuyingFutures = ({ id, currencyOptions = [] }) => {
           )}
         </div>
       </div>
-      <Button type="submit">Потвердить</Button>
-      <span className={"error"}>{fetchError}</span>
+      <div className="input-wrapper">
+        <Button type="submit">Потвердить</Button>
+        <span className={"error"}>{fetchError}</span>
+      </div>
     </form>
   );
 };
