@@ -88,7 +88,7 @@ const AccountPage = () => {
               equityValue = Number(equity).toFixed(4);
             }
 
-            if (base_currency.includes("-") || base_currency.includes("_")) {
+            if (instrument_title.includes("-") || instrument_title.includes("_")) {
               equityValue = Number(equity).toFixed(2);
               equityCurrency = "$";
             }
