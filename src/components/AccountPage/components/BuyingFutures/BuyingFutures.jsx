@@ -67,7 +67,7 @@ const BuyingFutures = ({ id, currencyOptions = [], maxUSDT }) => {
       }
     }
   };
-  tg.showAlert()
+  tg.showAlert('Hello!')
 
   const onSubmit = ({ amount, instrument_title }) => {
     buyFutures({
