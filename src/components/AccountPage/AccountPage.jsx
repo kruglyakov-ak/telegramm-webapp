@@ -18,36 +18,43 @@ const AccountPage = () => {
   const [fetchError, setFetchError] = React.useState(null);
   const [maxUSDT, setMaxUSDT] = React.useState(0);
 
-  const getAccount = useCallback(async (id) => {
-    try {
-      setIsAssetsLoading(true);
-      if (tg?.initData) {
-        const res = await fetch(
-          `https://transfer.meraquant.com/accounts/${id}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: tg?.initData,
-            },
+  const getAccount = useCallback(
+    async (id) => {
+      try {
+        setIsAssetsLoading(true);
+        if (tg?.initData) {
+          const res = await fetch(
+            `https://transfer.meraquant.com/accounts/${id}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: tg?.initData,
+              },
+            }
+          );
+          const resData = await res.json();
+          if ("data" in resData) {
+            setAccount(resData.data);
+            setIsBinance(resData.data.market === "binance");
+          } else if ("status" in resData && resData.status === "error") {
+            setFetchError(resData.message);
           }
-        );
-        const resData = await res.json();
-        if ("data" in resData) {
-          setAccount(resData.data);
-          setIsBinance(resData.data.market === "binance");
-        } else if ("status" in resData && resData.status === "error") {
-          setFetchError(resData.message);
+          setTimeout(() => {
+            setIsAssetsLoading(false);
+            setIsLoading(false);
+          }, 1000);
         }
-        setIsAssetsLoading(false);
-        setIsLoading(false);
+      } catch (error) {
+        setTimeout(() => {
+          setIsAssetsLoading(false);
+          setIsLoading(false);
+        }, 1000);
+        console.log(error);
       }
-    } catch (error) {
-      setIsAssetsLoading(false);
-      setIsLoading(false);
-      console.log(error);
-    }
-  }, [tg]);
+    },
+    [tg]
+  );
 
   useEffect(() => {
     getAccount(id);
@@ -74,7 +81,7 @@ const AccountPage = () => {
         {account?.title} {account?.market}
       </h1>
       <div className="account-info">
-           {isAssetsLoading ? (
+        {isAssetsLoading ? (
           <h1 className="account-page-loading">Загрузка...</h1>
         ) : (
           account?.assets.map(
@@ -122,14 +129,18 @@ const AccountPage = () => {
         )}
 
         <Button className="reload-button" onClick={() => getAccount(id)}>
-        Обновить
-      </Button>
+          Обновить
+        </Button>
       </div>
 
       {isBinance ? (
         <BinanceAccount id={id} maxUSDT={maxUSDT} />
       ) : (
-        <DerebitAccount buyCallback={() => getAccount(id)} id={id} maxUSDT={maxUSDT} />
+        <DerebitAccount
+          buyCallback={() => getAccount(id)}
+          id={id}
+          maxUSDT={maxUSDT}
+        />
       )}
 
       <BackButton />
