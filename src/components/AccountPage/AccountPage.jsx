@@ -2,10 +2,8 @@ import React, { useEffect, useCallback } from "react";
 import { useLoaderData } from "react-router-dom";
 import BinanceAccount from "./components/BinanceAccountPage/BinanceAccount";
 import DerebitAccount from "./components/DerebitAccount/DerebitAccount";
-import Link from "../Link/Link";
-import Button from "../Button/Button";
+import BackButton from "./components/BackButton/BackButton";
 import { useTelegram } from "../../hooks/useTelegram";
-import { AppRouterPath } from "../../constants";
 import "./AccountPage.css";
 
 const AccountPage = () => {
@@ -48,9 +46,7 @@ const AccountPage = () => {
     <div className="account-page">
       <h1 className="account-page-loading">Загрузка...</h1>
 
-      <Link to={AppRouterPath.Main}>
-        <Button className="back-button">К списку аккаунтов</Button>
-      </Link>
+      <BackButton />
     </div>
   ) : account ? (
     <div className="account-page">
@@ -58,16 +54,12 @@ const AccountPage = () => {
 
       {isBinance ? <BinanceAccount /> : <DerebitAccount id={id} />}
 
-      <Link to={AppRouterPath.Main}>
-        <Button className="back-button">К списку аккаунтов</Button>
-      </Link>
+      <BackButton />
     </div>
   ) : (
     <div className="account-page">
       <h1 className="account-page-error">Ошибка API ключей</h1>
-      <Link to={AppRouterPath.Main}>
-        <Button className="back-button">К списку аккаунтов</Button>
-      </Link>
+      <BackButton />
     </div>
   );
 };
