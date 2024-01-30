@@ -20,7 +20,6 @@ const BuyingFutures = ({ id, currencyOptions = [], maxUSDT, buyCallback }) => {
     formState: { errors },
   } = useForm();
   const [selectedOption, setSelectionOption] = React.useState(null);
-  const [fetchError, setFetchError] = React.useState(null);
   register("amount", {
     required: "Введите сумму",
     validate: (val) => {
@@ -59,7 +58,11 @@ const BuyingFutures = ({ id, currencyOptions = [], maxUSDT, buyCallback }) => {
 
         const response = await res.json();
         if (response.status === "error" && "status" in response) {
-          setFetchError(response.message);
+          tg.showPopup({
+            title: "Ошибка при покупке фьючерса",
+            message: response.message,
+            buttons: [{ text: "Закрыть", type: "close" }],
+          });
         } else if (response.status === "success") {
           tg.showPopup({
             title: "Покупка фьючерса",
@@ -77,7 +80,11 @@ const BuyingFutures = ({ id, currencyOptions = [], maxUSDT, buyCallback }) => {
     } catch (error) {
       console.log(error);
       if (error && "message" in error) {
-        setFetchError(error.response.data.message || error.message);
+        tg.showPopup({
+          title: "Ошибка при покупке фьючерса",
+          message: error.response.data.message || error.message,
+          buttons: [{ text: "Закрыть", type: "close" }],
+        });
       }
       setIsLoading(false);
     }
@@ -132,12 +139,7 @@ const BuyingFutures = ({ id, currencyOptions = [], maxUSDT, buyCallback }) => {
           )}
         </div>
       </div>
-      <div className="input-wrapper">
-        <Button type="submit">
-          {isLoading ? "Загрузка..." : "Потвердить"}
-        </Button>
-        <span className={"error"}>{fetchError}</span>
-      </div>
+      <Button type="submit">{isLoading ? "Загрузка..." : "Потвердить"}</Button>
     </form>
   );
 };
