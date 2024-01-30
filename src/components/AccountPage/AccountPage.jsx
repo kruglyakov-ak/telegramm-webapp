@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import BinanceAccount from "./components/BinanceAccountPage/BinanceAccount";
 import DerebitAccount from "./components/DerebitAccount/DerebitAccount";
 import BackButton from "./components/BackButton/BackButton";
+import Button from "../../../Button/Button";
 import { useTelegram } from "../../hooks/useTelegram";
 import "./AccountPage.css";
 
@@ -17,6 +18,7 @@ const AccountPage = () => {
 
   const getAccount = useCallback(async () => {
     try {
+      setIsLoading(true);
       if (tg?.initData) {
         const res = await fetch(
           `https://transfer.meraquant.com/accounts/${id}`,
@@ -58,6 +60,10 @@ const AccountPage = () => {
       <h1 className="account-page-title">
         {account?.title} {account?.market}
       </h1>
+
+      <Button className="reload-button" onClick={getAccount}>
+        Обновить
+      </Button>
 
       <div className="account-info">
         {account?.assets.map(

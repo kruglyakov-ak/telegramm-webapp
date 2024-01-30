@@ -5,6 +5,13 @@
   height: 100%;
   width: 100%;
   padding-top: 40px;
+  position: relative;
+}
+
+.reload-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .account-page-title {
