@@ -8,8 +8,9 @@
 }
 
 .reload-button {
-  width: 100%;
+  width: 90px;
   font-size: 0.8em;
+  align-self: flex-end;
 }
 
 .account-page-title {
