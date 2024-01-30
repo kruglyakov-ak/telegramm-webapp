@@ -60,7 +60,7 @@ const AccountPage = () => {
     <div className="account-page">
       <h1 className="account-page-title">{account?.title}</h1>
 
-      {isBinance ? <BinanceAccount /> : <DerebitAccount id={id} />}
+      {isBinance ? <BinanceAccount id={id}/> : <DerebitAccount id={id} />}
 
       <BackButton />
     </div>
