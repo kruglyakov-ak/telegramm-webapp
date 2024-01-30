@@ -46,7 +46,7 @@ const AccountPage = () => {
 
   return isLoading ? (
     <div className="account-page">
-      <h1>Загрузка...</h1>
+      <h1 className="account-page-loading">Загрузка...</h1>
 
       <Link to={AppRouterPath.Main}>
         <Button className="back-button">К списку аккаунтов</Button>
@@ -64,7 +64,7 @@ const AccountPage = () => {
     </div>
   ) : (
     <div className="account-page">
-      <h1>Аккаунт не найден</h1>
+      <h1 className="account-page-error">Ошибка API ключей</h1>
       <Link to={AppRouterPath.Main}>
         <Button className="back-button">К списку аккаунтов</Button>
       </Link>
