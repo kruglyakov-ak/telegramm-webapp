@@ -14,7 +14,7 @@ const AccountPage = () => {
   const [account, setAccount] = React.useState(null);
   const [isBinance, setIsBinance] = React.useState(true);
   const [fetchError, setFetchError] = React.useState(null);
-  const [maxUSDT] = React.useState(0);
+  const [maxUSDT, setMaxUSDT] = React.useState(0);
 
   const getAccount = useCallback(async () => {
     try {
@@ -48,6 +48,15 @@ const AccountPage = () => {
   useEffect(() => {
     getAccount();
   }, [getAccount, tg]);
+
+  useEffect(() => {
+    if (account) {
+      setMaxUSDT(
+        account?.assets?.find(({ base_currency }) => base_currency === "USDT")
+          ?.equity || 0
+      );
+    }
+  }, [account]);
 
   return isLoading ? (
     <div className="account-page">
@@ -88,7 +97,10 @@ const AccountPage = () => {
               equityValue = Number(equity).toFixed(4);
             }
 
-            if (instrument_title.includes("-") || instrument_title.includes("_")) {
+            if (
+              instrument_title.includes("-") ||
+              instrument_title.includes("_")
+            ) {
               equityValue = Number(equity).toFixed(2);
               equityCurrency = "$";
             }
