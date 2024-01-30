@@ -20,3 +20,27 @@
 .account-page-loading {
   margin-bottom: 40px;
 }
+
+.account-info {
+  border-radius: 5px;
+  padding: 20px;
+  border: 1px solid var(--tg-theme-button-color);
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.account-info .account-info-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.account-info .account-info-row .equity {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

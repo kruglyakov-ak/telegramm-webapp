@@ -66,12 +66,14 @@ const AccountPage = () => {
       <div className="account-info">
         {account?.assets.map(
           ({ base_currency, instrument_title, equity }, index) => {
-
             return (
               <div key={index} className="account-info-row">
                 <div>{instrument_title}</div>
-                <div>{base_currency}</div>
-                <div>{equity}</div>
+
+                <div className="equity">
+                  <div>{equity}</div>
+                  <div>{base_currency}</div>
+                </div>
               </div>
             );
           }
