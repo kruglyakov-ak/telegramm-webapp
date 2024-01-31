@@ -7,6 +7,7 @@ import "./BinanceAccount.css";
 
 const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
   const { tg } = useTelegram();
+  const [buyingPerpOptions, setBuyingPerpOptions] = React.useState([]);
   const [buyingOptions, setBuyingOptions] = React.useState([]);
   const [sellingOptions, setSellingOptions] = React.useState([]);
 
@@ -27,7 +28,7 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
         );
         const resData = await res.json();
 
-        setBuyingOptions(
+        setBuyingPerpOptions(
           resData?.data?.binance?.buy.map(({ instrument_to }) => ({
             value: instrument_to,
             label: instrument_to,
@@ -38,6 +39,35 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
       console.log(error);
     }
   }, [tg]);
+
+  const getNearestFutures = React.useCallback(async () => {
+    try {
+      if (tg?.initData) {
+        const res = await fetch(
+          `https://transfer.meraquant.com/instruments/futures/nearest`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: tg?.initData,
+            },
+          }
+        );
+        const resData = await res.json();
+
+        setBuyingOptions(
+          buyingPerpOptions.push(
+            resData?.data?.binance?.buy.map(({ instrument_to }) => ({
+              value: instrument_to,
+              label: instrument_to,
+            }))
+          )
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [buyingPerpOptions, tg?.initData]);
 
   React.useEffect(() => {
     setSellingOptions(
@@ -52,7 +82,8 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
 
   React.useEffect(() => {
     getPossiblePairs();
-  }, [getPossiblePairs, tg]);
+    getNearestFutures();
+  }, [getNearestFutures, getPossiblePairs, tg]);
 
   const getActionElement = (mode) => {
     switch (mode) {
@@ -62,7 +93,7 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
             buyCallback={buyCallback}
             maxUSDT={maxUSDT}
             id={id}
-            currencyOptions={buyingOptions}
+            currencyOptions={buyingPerpOptions}
           />
         );
       case "change":
