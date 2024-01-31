@@ -9,7 +9,7 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
   const { tg } = useTelegram();
   const [buyingOptions, setBuyingOptions] = React.useState([]);
   const [nearestOptions, setNearestOptions] = React.useState([]);
-
+  console.log(nearestOptions);
   const [sellingOptions, setSellingOptions] = React.useState([]);
   const [actionMode, setActionMode] = React.useState("buy");
 
@@ -78,10 +78,12 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
 
   React.useEffect(() => {
     setSellingOptions(
-      assets.filter(({instrument_title}) => instrument_title.includes('_')).map(({ instrument_title }) => ({
-        value: instrument_title,
-        label: instrument_title,
-      }))
+      assets
+        .filter(({ instrument_title }) => instrument_title.includes("_"))
+        .map(({ instrument_title }) => ({
+          value: instrument_title,
+          label: instrument_title,
+        }))
     );
   }, [assets]);
 
