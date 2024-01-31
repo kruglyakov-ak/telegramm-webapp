@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
 import CustomSelect from "../../../CustomSelect/CustomSelect";
 import Button from "../../../Button/Button";
@@ -21,6 +20,7 @@ const ChangeFutures = ({
   const [selectedBuyOption, setSelectedBuyOption] = React.useState(null);
 
   const sellFuturesSelectChangeHandler = (value) => {
+    console.log(value);
     const isPerp = value.includes("PERP");
     const currency = value.slice(0, 3);
     setSelectedSellOption(
