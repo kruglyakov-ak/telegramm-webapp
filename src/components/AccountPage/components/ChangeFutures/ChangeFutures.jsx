@@ -22,7 +22,6 @@ const ChangeFutures = ({
   const sellFuturesSelectChangeHandler = (value) => {
     const isPerp = value.includes("PERP");
     const currency = value.slice(0, 3);
-    console.log(isPerp, currency);
     setSelectedSellOption(
       availableForSellFuteresOptions.find((option) => option.value === value) ||
         null
@@ -30,6 +29,8 @@ const ChangeFutures = ({
     setSelectedBuyOption(null);
 
     if (buyingOptions.length > 0) {
+    console.log(isPerp, currency);
+
       if (isPerp) {
         setAvailableForBuyFuteresOptions(
           buyingOptions.slice().filter(
