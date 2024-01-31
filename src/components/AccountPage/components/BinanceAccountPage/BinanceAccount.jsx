@@ -13,34 +13,7 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
 
   const [actionMode, setActionMode] = React.useState("buy");
 
-  const getPossiblePairs = React.useCallback(async () => {
-    try {
-      if (tg?.initData) {
-        const res = await fetch(
-          `https://transfer.meraquant.com/instruments/futures/pairs`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: tg?.initData,
-            },
-          }
-        );
-        const resData = await res.json();
-
-        setBuyingPerpOptions(
-          resData?.data?.binance?.buy.map(({ instrument_to }) => ({
-            value: instrument_to,
-            label: instrument_to,
-          }))
-        );
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [tg]);
-
-  const getNearestFutures = React.useCallback(async () => {
+  const getNearestFutures = async () => {
     try {
       if (tg?.initData) {
         const res = await fetch(
@@ -67,7 +40,37 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
     } catch (error) {
       console.log(error);
     }
-  }, [buyingPerpOptions, tg?.initData]);
+  };
+
+  const getPossiblePairs = React.useCallback(async () => {
+    try {
+      if (tg?.initData) {
+        const res = await fetch(
+          `https://transfer.meraquant.com/instruments/futures/pairs`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: tg?.initData,
+            },
+          }
+        );
+        const resData = await res.json();
+
+        setBuyingPerpOptions(
+          resData?.data?.binance?.buy.map(({ instrument_to }) => ({
+            value: instrument_to,
+            label: instrument_to,
+          }))
+        );
+
+        await getNearestFutures();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [tg]);
+
 
   React.useEffect(() => {
     setSellingOptions(
@@ -82,8 +85,7 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
 
   React.useEffect(() => {
     getPossiblePairs();
-    getNearestFutures();
-  }, [getNearestFutures, getPossiblePairs, tg]);
+  }, [getPossiblePairs, tg]);
 
   const getActionElement = (mode) => {
     switch (mode) {
