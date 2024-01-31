@@ -100,12 +100,8 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
       case "change":
         return (
           <ChangeFutures
-            buyingOptions={[
-              { value: null, label: "-" },
-              ...buyingOptions,
-              ...nearestOptions,
-            ]}
-            sellingOptions={[{ value: null, label: "-" }, ...sellingOptions]}
+            buyingOptions={[...buyingOptions, ...nearestOptions]}
+            sellingOptions={[...sellingOptions]}
             buyCallback={buyCallback}
             id={id}
           />

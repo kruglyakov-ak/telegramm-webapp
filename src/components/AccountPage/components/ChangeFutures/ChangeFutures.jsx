@@ -30,7 +30,23 @@ const ChangeFutures = ({
     setSelectedBuyOption(null);
 
     if (buyingOptions.length > 0) {
-      console.log(buyingOptions);
+      if (isPerp) {
+        setAvailableForBuyFuteresOptions(
+          buyingOptions.slice().filter(
+            (option) =>
+              option.value.slice(0, 3) === currency &&
+              option.value.includes("PERP")
+          )
+        );
+      } else {
+        setAvailableForBuyFuteresOptions(
+          buyingOptions.slice().filter(
+            (option) =>
+              option.value.slice(0, 3) === currency &&
+              !option.value.includes("PERP")
+          )
+        );
+      }
     }
   };
 
