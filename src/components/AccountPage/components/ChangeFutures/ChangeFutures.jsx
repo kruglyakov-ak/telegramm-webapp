@@ -21,6 +21,9 @@ const ChangeFutures = ({
   const [selectedBuyOption, setSelectedBuyOption] = React.useState(null);
 
   const sellFuturesSelectChangeHandler = (value) => {
+    const isPerp = value.includes("PERP");
+    const currency = value.slice(0, 3);
+    console.log(isPerp, currency)
     setSelectedSellOption(
       availableForSellFuteresOptions.find((option) => option.value === value) ||
         null
