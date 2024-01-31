@@ -27,26 +27,27 @@ const ChangeFutures = ({
       availableForSellFuteresOptions.find((option) => option.value === value) ||
         null
     );
-
     setSelectedBuyOption(null);
 
-    // if (isPerp) {
-    //   setAvailableForBuyFuteresOptions(
-    //     buyingOptions.filter(
-    //       (option) =>
-    //         option.value.slice(0, 3) === currency &&
-    //         option.value.includes("PERP")
-    //     )
-    //   );
-    // } else {
-    //   setAvailableForBuyFuteresOptions(
-    //     buyingOptions.filter(
-    //       (option) =>
-    //         option.value.slice(0, 3) === currency &&
-    //         !option.value.includes("PERP")
-    //     )
-    //   );
-    // }
+    if (buyingOptions.length > 0) {
+      if (isPerp) {
+        setAvailableForBuyFuteresOptions(
+          buyingOptions.filter(
+            (option) =>
+              option.value.slice(0, 3) === currency &&
+              option.value.includes("PERP")
+          )
+        );
+      } else {
+        setAvailableForBuyFuteresOptions(
+          buyingOptions.filter(
+            (option) =>
+              option.value.slice(0, 3) === currency &&
+              !option.value.includes("PERP")
+          )
+        );
+      }
+    }
   };
 
   const buyFuturesSelectChangeHandler = (value) => {
