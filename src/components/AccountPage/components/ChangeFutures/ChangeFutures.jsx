@@ -23,11 +23,30 @@ const ChangeFutures = ({
   const sellFuturesSelectChangeHandler = (value) => {
     const isPerp = value.includes("PERP");
     const currency = value.slice(0, 3);
-    console.log(isPerp, currency)
     setSelectedSellOption(
       availableForSellFuteresOptions.find((option) => option.value === value) ||
         null
     );
+
+    setSelectedBuyOption(null)
+
+    if (isPerp) {
+      setAvailableForBuyFuteresOptions(
+        availableForBuyFuteresOptions.filter(
+          (option) =>
+            option.value.slice(0, 3) === currency &&
+            option.value.includes("PERP")
+        )
+      );
+    } else {
+      setAvailableForBuyFuteresOptions(
+        availableForBuyFuteresOptions.filter(
+          (option) =>
+            option.value.slice(0, 3) === currency &&
+            !option.value.includes("PERP")
+        )
+      );
+    }
   };
 
   const buyFuturesSelectChangeHandler = (value) => {
@@ -127,7 +146,9 @@ const ChangeFutures = ({
         />
       </div>
 
-      <Button onClick={exchangeFutures}>{isLoading ? "Загрузка..." : "Потвердить"}</Button>
+      <Button onClick={exchangeFutures}>
+        {isLoading ? "Загрузка..." : "Потвердить"}
+      </Button>
     </div>
   );
 };
