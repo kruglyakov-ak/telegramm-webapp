@@ -2,9 +2,17 @@
 import React from "react";
 import CustomSelect from "../../../CustomSelect/CustomSelect";
 import Button from "../../../Button/Button";
+import { useTelegram } from "../../../../hooks/useTelegram";
 import "./ChangeFutures.css";
 
-const ChangeFutures = ({ buyingOptions = [], sellingOptions = [] }) => {
+const ChangeFutures = ({
+  id,
+  buyingOptions = [],
+  sellingOptions = [],
+  buyCallback,
+}) => {
+  const { tg } = useTelegram();
+  const [isLoading, setIsLoading] = React.useState(false);
   const [availableForSellFuteresOptions, setAvailableForSellFuteresOptions] =
     React.useState([]);
   const [availableForBuyFuteresOptions, setAvailableForBuyFuteresOptions] =
@@ -31,6 +39,58 @@ const ChangeFutures = ({ buyingOptions = [], sellingOptions = [] }) => {
     setAvailableForBuyFuteresOptions(buyingOptions);
   }, [buyingOptions, sellingOptions]);
 
+  const exchangeFutures = async (data) => {
+    try {
+      setIsLoading(true);
+      if (tg.initData && id) {
+        const res = await fetch(
+          `https://transfer.meraquant.com/accounts/${id}/exchange`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: tg.initData,
+            },
+            body: JSON.stringify({
+              instrument_title_from: selectedSellOption,
+              instrument_title_to: selectedBuyOption,
+            }),
+          }
+        );
+
+        const response = await res.json();
+        if (response.status === "error" && "status" in response) {
+          tg.showPopup({
+            title: "Ошибка",
+            message: response.message,
+            buttons: [{ text: "Закрыть", type: "close" }],
+          });
+        } else if (response.status === "success") {
+          tg.showPopup({
+            title: "Обмен фьючерса",
+            message: response.message,
+            buttons: [{ text: "Закрыть", type: "close" }],
+          });
+
+          setSelectedSellOption(null);
+          setSelectedBuyOption(null);
+          buyCallback();
+        }
+
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+      if (error && "message" in error) {
+        tg.showPopup({
+          title: "Ошибка",
+          message: error.response.data.message || error.message,
+          buttons: [{ text: "Закрыть", type: "close" }],
+        });
+      }
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="actions-block">
@@ -64,7 +124,7 @@ const ChangeFutures = ({ buyingOptions = [], sellingOptions = [] }) => {
         />
       </div>
 
-      <Button>Потвердить</Button>
+      <Button>{isLoading ? "Загрузка..." : "Потвердить"}</Button>
     </div>
   );
 };
