@@ -4,11 +4,11 @@ import CustomSelect from "../../../CustomSelect/CustomSelect";
 import Button from "../../../Button/Button";
 import "./ChangeFutures.css";
 
-const ChangeFutures = ({ buyingOptions, sellingOptions }) => {
+const ChangeFutures = ({ buyingOptions = [], sellingOptions = [] }) => {
   const [availableForSellFuteresOptions, setAvailableForSellFuteresOptions] =
-    React.useState(sellingOptions);
+    React.useState([]);
   const [availableForBuyFuteresOptions, setAvailableForBuyFuteresOptions] =
-    React.useState(buyingOptions);
+    React.useState([]);
   const [selectedSellOption, setSelectedSellOption] = React.useState(null);
   const [selectedBuyOption, setSelectedBuyOption] = React.useState(null);
 
@@ -25,6 +25,11 @@ const ChangeFutures = ({ buyingOptions, sellingOptions }) => {
         null
     );
   };
+
+  React.useEffect(() => {
+    setAvailableForSellFuteresOptions(sellingOptions);
+    setAvailableForBuyFuteresOptions(buyingOptions);
+  }, [buyingOptions, sellingOptions]);
 
   return (
     <div className="actions-block">
