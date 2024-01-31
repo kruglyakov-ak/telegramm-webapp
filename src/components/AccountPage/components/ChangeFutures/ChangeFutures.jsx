@@ -52,8 +52,8 @@ const ChangeFutures = ({
               Authorization: tg.initData,
             },
             body: JSON.stringify({
-              instrument_title_from: selectedSellOption,
-              instrument_title_to: selectedBuyOption,
+              instrument_title_from: selectedSellOption.value,
+              instrument_title_to: selectedBuyOption.value,
             }),
           }
         );
