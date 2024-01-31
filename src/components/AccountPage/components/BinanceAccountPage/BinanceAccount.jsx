@@ -69,6 +69,7 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
     } catch (error) {
       console.log(error);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tg]);
 
 
