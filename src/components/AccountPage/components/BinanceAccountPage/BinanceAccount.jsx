@@ -27,8 +27,10 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
           }
         );
         const resData = await res.json();
-
-        return resData.data;
+        
+        if ("status" in resData && resData.status === "success") {
+          return resData.data;
+        }
       }
     } catch (error) {
       console.log(error);
@@ -50,12 +52,14 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
         );
         const resData = await res.json();
 
-        setBuyingPerpOptions(
-          resData?.data?.binance?.buy.map(({ instrument_to }) => ({
-            value: instrument_to,
-            label: instrument_to,
-          }))
-        );
+        if ("status" in resData && resData.status === "success") {
+          setBuyingPerpOptions(
+            resData?.data?.binance?.buy.map(({ instrument_to }) => ({
+              value: instrument_to,
+              label: instrument_to,
+            }))
+          );
+        }
 
         await getNearestFutures();
       }
@@ -65,14 +69,16 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
   }, [getNearestFutures, tg?.initData]);
 
   React.useEffect(() => {
-    setSellingOptions(
-      assets
-        .filter((asset) => asset.instrument_title.includes("_"))
-        .map((asset) => ({
-          value: asset.instrument_title,
-          label: asset.instrument_title,
-        }))
-    );
+    if (assets.lenth > 0) {
+      setSellingOptions(
+        assets
+          .filter((asset) => asset.instrument_title.includes("_"))
+          .map((asset) => ({
+            value: asset.instrument_title,
+            label: asset.instrument_title,
+          }))
+      );
+    }
   }, [assets]);
 
   React.useEffect(() => {
