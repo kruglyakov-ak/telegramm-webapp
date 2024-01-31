@@ -8,6 +8,8 @@ import "./BinanceAccount.css";
 const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
   const { tg } = useTelegram();
   const [buyingOptions, setBuyingOptions] = React.useState([]);
+  const [nearestOptions, setNearestOptions] = React.useState([]);
+
   const [sellingOptions, setSellingOptions] = React.useState([]);
   const [actionMode, setActionMode] = React.useState("buy");
 
@@ -56,10 +58,10 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
         const resData = await res.json();
 
         if ("status" in resData && resData.status === "success") {
-          setBuyingOptions(
-            resData?.data?.map(({ instrument_to }) => ({
-              value: instrument_to,
-              label: instrument_to,
+          setNearestOptions(
+            resData?.data?.map(({ instrument_title }) => ({
+              value: instrument_title,
+              label: instrument_title,
             }))
           );
         }
@@ -71,7 +73,8 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
 
   React.useEffect(() => {
     getPossiblePairs();
-  }, [getPossiblePairs, tg]);
+    getNearestFutures();
+  }, [getNearestFutures, getPossiblePairs, tg]);
 
   React.useEffect(() => {
     setSellingOptions(
