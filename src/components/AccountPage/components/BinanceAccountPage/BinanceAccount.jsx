@@ -9,7 +9,6 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
   const { tg } = useTelegram();
   const [buyingOptions, setBuyingOptions] = React.useState([]);
   const [nearestOptions, setNearestOptions] = React.useState([]);
-  console.log(nearestOptions);
   const [sellingOptions, setSellingOptions] = React.useState([]);
   const [actionMode, setActionMode] = React.useState("buy");
 
@@ -101,8 +100,12 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
       case "change":
         return (
           <ChangeFutures
-            buyingOptions={buyingOptions}
-            sellingOptions={sellingOptions}
+            buyingOptions={[{ value: null, label: null }, ...buyingOptions]}
+            sellingOptions={[
+              { value: null, label: null },
+              ...sellingOptions,
+              ...nearestOptions,
+            ]}
           />
         );
       default:
