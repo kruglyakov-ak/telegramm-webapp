@@ -32,3 +32,10 @@
   width: 15px;
   height: 15px;
 }
+
+.account-button .account-button-inner {
+  width: 330px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

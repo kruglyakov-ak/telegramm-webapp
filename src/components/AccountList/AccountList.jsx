@@ -43,23 +43,25 @@ function AccountList(props) {
       {accounts.length > 0 &&
         accounts.map((account) => (
           <Link key={account.id} to={AppRouterPath.Account(account.id)}>
-            <Button key={account}>
-              {account.title}
-              <div className="exchange-logo-wrapper">
-                {account.market === "binance" ? (
-                  <img
-                    className="exchange-logo"
-                    src="/images/binance-logo.svg"
-                    alt="Binance"
-                  />
-                ) : (
-                  <img
-                    className="exchange-logo"
-                    src="/images/deribit-logo.svg"
-                    alt="Deribit"
-                    style={{ marginLeft: "2px" }}
-                  />
-                )}
+            <Button key={account} className="account-button">
+              <div className="account-button-inner">
+                {account.title}
+                <div className="exchange-logo-wrapper">
+                  {account.market === "binance" ? (
+                    <img
+                      className="exchange-logo"
+                      src="/images/binance-logo.svg"
+                      alt="Binance"
+                    />
+                  ) : (
+                    <img
+                      className="exchange-logo"
+                      src="/images/deribit-logo.svg"
+                      alt="Deribit"
+                      style={{ marginLeft: "2px" }}
+                    />
+                  )}
+                </div>
               </div>
             </Button>
           </Link>
