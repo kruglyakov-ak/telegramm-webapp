@@ -5,9 +5,11 @@ import Button from "../../../Button/Button";
 import { useTelegram } from "../../../../hooks/useTelegram";
 import "./BinanceAccount.css";
 
-const BinanceAccount = ({id, maxUSDT}) => {
+const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
   const { tg } = useTelegram();
   const [buyingOptions, setBuyingOptions] = React.useState([]);
+  const [sellingOptions, setSellingOptions] = React.useState([]);
+
   const [actionMode, setActionMode] = React.useState("buy");
 
   const getPossiblePairs = React.useCallback(async () => {
@@ -38,15 +40,42 @@ const BinanceAccount = ({id, maxUSDT}) => {
   }, [tg]);
 
   React.useEffect(() => {
+    setSellingOptions(
+      assets.map((asset) => {
+        if (asset.instrument_title.includes("_")) {
+          return {
+            value: asset.instrument_title,
+            label: asset.instrument_title,
+          };
+        }
+
+        return undefined;
+      })
+    );
+  }, [assets]);
+
+  React.useEffect(() => {
     getPossiblePairs();
   }, [getPossiblePairs, tg]);
 
   const getActionElement = (mode) => {
     switch (mode) {
       case "buy":
-        return <BuyingFutures maxUSDT={maxUSDT} id={id} currencyOptions={buyingOptions} />;
+        return (
+          <BuyingFutures
+            buyCallback={buyCallback}
+            maxUSDT={maxUSDT}
+            id={id}
+            currencyOptions={buyingOptions}
+          />
+        );
       case "change":
-        return <ChangeFutures />;
+        return (
+          <ChangeFutures
+            buyingOptions={buyingOptions}
+            sellingOptions={sellingOptions}
+          />
+        );
       default:
         return null;
     }

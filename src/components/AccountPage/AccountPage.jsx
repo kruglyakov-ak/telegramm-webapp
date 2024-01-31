@@ -134,7 +134,12 @@ const AccountPage = () => {
       </div>
 
       {isBinance ? (
-        <BinanceAccount id={id} maxUSDT={maxUSDT} />
+        <BinanceAccount
+          id={id}
+          maxUSDT={maxUSDT}
+          buyCallback={() => getAccount(id)}
+          assets={account?.assets}
+        />
       ) : (
         <DerebitAccount
           buyCallback={() => getAccount(id)}
@@ -148,7 +153,6 @@ const AccountPage = () => {
   ) : (
     <div className="account-page">
       <h1 className="account-page-error">{fetchError}</h1>
-      <BinanceAccount id={id} maxUSDT={maxUSDT} />
       <BackButton />
     </div>
   );
