@@ -32,7 +32,7 @@ const ChangeFutures = ({
     if (buyingOptions.length > 0) {
       if (isPerp) {
         setAvailableForBuyFuteresOptions(
-          buyingOptions.filter(
+          buyingOptions.slice().filter(
             (option) =>
               option.value.slice(0, 3) === currency &&
               option.value.includes("PERP")
@@ -40,7 +40,7 @@ const ChangeFutures = ({
         );
       } else {
         setAvailableForBuyFuteresOptions(
-          buyingOptions.filter(
+          buyingOptions.slice().filter(
             (option) =>
               option.value.slice(0, 3) === currency &&
               !option.value.includes("PERP")
