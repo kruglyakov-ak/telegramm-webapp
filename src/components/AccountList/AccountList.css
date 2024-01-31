@@ -27,7 +27,7 @@
   border-radius: 50%;
   background-color: var(--tg-theme-bg-color);
   position: absolute;
-  right: 0;
+  right: 75px;
 }
 
 .account-list .exchange-logo-wrapper .exchange-logo {
