@@ -124,7 +124,7 @@ const ChangeFutures = ({
         />
       </div>
 
-      <Button>{isLoading ? "Загрузка..." : "Потвердить"}</Button>
+      <Button onClick={exchangeFutures}>{isLoading ? "Загрузка..." : "Потвердить"}</Button>
     </div>
   );
 };
