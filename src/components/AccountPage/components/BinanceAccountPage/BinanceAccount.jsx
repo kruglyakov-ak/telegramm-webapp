@@ -17,7 +17,7 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
     try {
       if (tg?.initData) {
         const res = await fetch(
-          `https://transfer.meraquant.com/instruments/futures/nearest`,
+          `https://transfer.meraquant.com/instruments/futures/nearest?exchange=binance`,
           {
             method: "GET",
             headers: {
