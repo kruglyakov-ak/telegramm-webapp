@@ -13,7 +13,7 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
 
   const [actionMode, setActionMode] = React.useState("buy");
 
-  const getNearestFutures = async () => {
+  const getNearestFutures = React.useCallback(async () => {
     try {
       if (tg?.initData) {
         const res = await fetch(
@@ -28,19 +28,12 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
         );
         const resData = await res.json();
 
-        setBuyingOptions(
-          buyingPerpOptions.push(
-            resData?.data?.map(({ instrument_title }) => ({
-              value: instrument_title,
-              label: instrument_title,
-            }))
-          )
-        );
+        return resData.data;
       }
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [tg?.initData]);
 
   const getPossiblePairs = React.useCallback(async () => {
     try {
@@ -69,9 +62,7 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
     } catch (error) {
       console.log(error);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tg]);
-
+  }, [getNearestFutures, tg?.initData]);
 
   React.useEffect(() => {
     setSellingOptions(
@@ -87,6 +78,11 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
   React.useEffect(() => {
     getPossiblePairs();
   }, [getPossiblePairs, tg]);
+
+  React.useEffect(() => {
+    const nearestFutures = getNearestFutures();
+    setBuyingOptions([...buyingPerpOptions, ...nearestFutures]);
+  }, [buyingPerpOptions, getNearestFutures]);
 
   const getActionElement = (mode) => {
     switch (mode) {
