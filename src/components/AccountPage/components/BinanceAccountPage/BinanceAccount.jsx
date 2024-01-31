@@ -57,9 +57,9 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
 
         setBuyingOptions(
           buyingPerpOptions.push(
-            resData?.data?.binance?.buy.map(({ instrument_to }) => ({
-              value: instrument_to,
-              label: instrument_to,
+            resData?.data?.map(({ instrument_title }) => ({
+              value: instrument_title,
+              label: instrument_title,
             }))
           )
         );
