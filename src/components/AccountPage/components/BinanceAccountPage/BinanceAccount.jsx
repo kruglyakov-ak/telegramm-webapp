@@ -41,16 +41,12 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
 
   React.useEffect(() => {
     setSellingOptions(
-      assets.map((asset) => {
-        if (asset.instrument_title.includes("_")) {
-          return {
-            value: asset.instrument_title,
-            label: asset.instrument_title,
-          };
-        }
-
-        return undefined;
-      })
+      assets
+        .filter((asset) => asset.instrument_title.includes("_"))
+        .map((asset) => ({
+          value: asset.instrument_title,
+          label: asset.instrument_title,
+        }))
     );
   }, [assets]);
 
