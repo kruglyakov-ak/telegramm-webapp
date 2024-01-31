@@ -40,6 +40,35 @@ const BinanceAccount = ({ id, maxUSDT, buyCallback, assets }) => {
     }
   }, [tg]);
 
+  const getNearestFutures = React.useCallback(async () => {
+    try {
+      if (tg?.initData) {
+        const res = await fetch(
+          `https://transfer.meraquant.com/instruments/futures/nearest`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: tg?.initData,
+            },
+          }
+        );
+        const resData = await res.json();
+
+        if ("status" in resData && resData.status === "success") {
+          setBuyingOptions(
+            resData?.data?.map(({ instrument_to }) => ({
+              value: instrument_to,
+              label: instrument_to,
+            }))
+          );
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [tg]);
+
   React.useEffect(() => {
     getPossiblePairs();
   }, [getPossiblePairs, tg]);
