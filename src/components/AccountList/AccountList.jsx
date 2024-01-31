@@ -44,7 +44,17 @@ function AccountList(props) {
         accounts.map((account) => (
           <Link key={account.id} to={AppRouterPath.Account(account.id)}>
             <Button key={account} className="account-button">
-              <div className="account-button-inner">
+              <div
+                className="account-button-inner"
+                style={{
+                  width:
+                    accounts.sort(function (a, b) {
+                      return b.title.length - a.title.length;
+                    })[0].title.length *
+                      10 +
+                    "px",
+                }}
+              >
                 {account.title}
                 <div className="exchange-logo-wrapper">
                   {account.market === "binance" ? (
