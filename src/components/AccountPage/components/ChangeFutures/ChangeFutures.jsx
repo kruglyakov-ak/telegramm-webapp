@@ -31,27 +31,6 @@ const ChangeFutures = ({ buyingOptions = [], sellingOptions = [] }) => {
     setAvailableForBuyFuteresOptions(buyingOptions);
   }, [buyingOptions, sellingOptions]);
 
-  React.useEffect(() => {
-    if (selectedSellOption) {
-      setSelectedBuyOption(
-        availableForBuyFuteresOptions.filter(
-          (option) =>
-            option.value.slice(0, 3) !== selectedSellOption.value.slice(0, 3)
-        ) || null
-      );
-    }
-  }, [selectedSellOption, availableForBuyFuteresOptions]);
-
-  React.useEffect(() => {
-    if (selectedBuyOption) {
-      setSelectedSellOption(
-        availableForSellFuteresOptions.filter(
-          (option) =>
-            option.value.slice(0, 3) !== selectedBuyOption.value.slice(0, 3)
-        ) || null
-      );
-    }
-  }, [selectedBuyOption, availableForSellFuteresOptions]);
 
   return (
     <div className="actions-block">
