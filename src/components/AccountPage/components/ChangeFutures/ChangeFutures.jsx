@@ -20,9 +20,9 @@ const ChangeFutures = ({
   const [selectedBuyOption, setSelectedBuyOption] = React.useState(null);
 
   const sellFuturesSelectChangeHandler = (value) => {
-    console.log(value.includes("PERP"));
     const isPerp = value.includes("PERP");
     const currency = value.slice(0, 3);
+    console.log(isPerp, currency);
     setSelectedSellOption(
       availableForSellFuteresOptions.find((option) => option.value === value) ||
         null
@@ -30,23 +30,23 @@ const ChangeFutures = ({
 
     setSelectedBuyOption(null);
 
-    if (isPerp) {
-      setAvailableForBuyFuteresOptions(
-        buyingOptions.filter(
-          (option) =>
-            option.value.slice(0, 3) === currency &&
-            option.value.includes("PERP")
-        )
-      );
-    } else {
-      setAvailableForBuyFuteresOptions(
-        buyingOptions.filter(
-          (option) =>
-            option.value.slice(0, 3) === currency &&
-            !option.value.includes("PERP")
-        )
-      );
-    }
+    // if (isPerp) {
+    //   setAvailableForBuyFuteresOptions(
+    //     buyingOptions.filter(
+    //       (option) =>
+    //         option.value.slice(0, 3) === currency &&
+    //         option.value.includes("PERP")
+    //     )
+    //   );
+    // } else {
+    //   setAvailableForBuyFuteresOptions(
+    //     buyingOptions.filter(
+    //       (option) =>
+    //         option.value.slice(0, 3) === currency &&
+    //         !option.value.includes("PERP")
+    //     )
+    //   );
+    // }
   };
 
   const buyFuturesSelectChangeHandler = (value) => {
